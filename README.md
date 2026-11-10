@@ -61,14 +61,12 @@ Tool có sẵn (`send`, `policy`, `papers`, `paper_text`) không tự được b
 Đánh dấu khi xong. Mỗi dòng trỏ tới file cần sửa và bằng chứng cần nộp.
 
 **Setup (CP1)**
-
 - [ ] `TEAM.md` có tên nhóm và thành viên
 - [ ] `.env` có provider key + `TAVILY_API_KEY`, `FIRECRAWL_API_KEY`, `RAPIDAPI_KEY`
-- [x] `python scripts/preflight_provider.py --provider openrouter` pass
-- [x] `pytest` chạy được: contract test + example test xanh, TODO test đang `skipped`
+- [ ] `python scripts/preflight_provider.py --provider openrouter` pass
+- [ ] `pytest` chạy được: contract test + example test xanh, TODO test đang `skipped`
 
 **Prompt & tool declaration (CP1, CP2)**
-
 - [ ] Chạy baseline `v0`, ghi vào `artifacts/version_log.csv`
 - [ ] Liệt kê các case FAIL của `v0` và gán mỗi case một loại lỗi (`wrong_tool`, `wrong_arg_value`, `missing_info`, v.v.)
 - [ ] `artifacts/system_prompt.md`: bỏ các chỉ dẫn xấu cố ý của starter (đoán thay vì hỏi, gửi không cần xác nhận, ép một bước)
@@ -79,27 +77,23 @@ Tool có sẵn (`send`, `policy`, `papers`, `paper_text`) không tự được b
 - [ ] `v1`, `v2`, `v3`: mỗi version **một** giả thuyết, metric trước/sau trong `version_log.csv`
 
 **Tool mới (CP3)**
-
 - [ ] `tools/<tên>/tool.py` + `TOOL.md` (frontmatter đúng contract trong `tools/README.md`)
 - [ ] Đăng ký trong `tools/__init__.py` (`TOOL_FUNCTIONS`) và `artifacts/tools.yaml`
 - [ ] Unit test cho tool mới trong `tests/test_tools_todo.py` (≥ 3 test)
 - [ ] Ít nhất 1 eval case trong `data/eval_group.json` kiểm tra model có route tới tool mới đúng lúc
 
 **Testing (CP3, CP4)**
-
 - [ ] `data/eval_group.json`: case cho model (routing / args / boundary), xem Step 4
 - [ ] `tests/test_tools_todo.py`: unit test cho code của tool, xem Step 4b
 - [ ] `pytest`: 0 failed; 3 test của tool mới không còn `skipped` (stub của tool có sẵn được phép còn skip)
 
 **Demo & báo cáo (CP5)**
-
 - [ ] UI chạy được + link dùng thử
 - [ ] `chat.py`: ≥ 3 lượt live, có transcript
 - [ ] `report/team/group_report.md` Phần A trước 16:30, Phần B trước khi nộp
 - [ ] Mỗi thành viên có `report/team/MSSV_HoTen.md`
 
 **Bonus (tuỳ chọn)**
-
 - [ ] `send` gửi thật lên Telegram sau khi user xác nhận, có transcript chứng minh
 - [ ] Small Local Model Challenge (Step 7)
 - [ ] Hơn 3 tool mới (≥ 4), mỗi tool ≥ 3 test
@@ -150,7 +144,7 @@ Báo cáo cá nhân phải đổi tên theo `MSSV_HoTen.md`, ví dụ `report/te
 
 ## Tool Tracks
 
-Phần mô tả dưới đây tóm tắt mỗi tool _làm gì_. Việc xác định _khi nào dùng_ tool nào là phần nhóm tự định nghĩa trong prompt và tool declaration.
+Phần mô tả dưới đây tóm tắt mỗi tool *làm gì*. Việc xác định *khi nào dùng* tool nào là phần nhóm tự định nghĩa trong prompt và tool declaration.
 
 Core tools:
 
@@ -178,7 +172,7 @@ Eval chấm theo **đúng tên tool**. Nếu nhóm đổi tên một tool cho r�
 2. `tools/__init__.py` — key trong `TOOL_FUNCTIONS`
 3. `data/eval_base.json` **và** `data/eval_research_extension.json` — `expect.tool_calls[].name`
 
-(Không cần đổi tên hàm trong `tools/<folder>/tool.py` — chỉ cần key trỏ đúng hàm. Không sửa _nội dung case_ trong `eval_base.json`, chỉ đổi tên tool nếu nhóm rename.)
+(Không cần đổi tên hàm trong `tools/<folder>/tool.py` — chỉ cần key trỏ đúng hàm. Không sửa *nội dung case* trong `eval_base.json`, chỉ đổi tên tool nếu nhóm rename.)
 
 ## Setup
 
@@ -265,7 +259,7 @@ Không sửa các case trong `data/eval_base.json`.
 Học phương pháp, không học thuộc đáp án:
 
 1. Mở run JSON. Với mỗi case FAIL, đọc `observed_mismatch` + `failures` + `actual_tool_calls`.
-2. Đặt một giả thuyết: _vì sao_ agent chọn sai (thiếu rule routing? thiếu convention args? prompt đang khuyến khích đoán/gửi/làm-một-bước?).
+2. Đặt một giả thuyết: *vì sao* agent chọn sai (thiếu rule routing? thiếu convention args? prompt đang khuyến khích đoán/gửi/làm-một-bước?).
 3. Sửa **một** thứ (một dòng prompt hoặc một description) để kiểm chứng giả thuyết đó.
 4. Chạy lại, so metric trước/sau. Nếu không cải thiện, đổi giả thuyết.
 

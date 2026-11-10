@@ -1,5 +1,5 @@
 {
-  "run_id": "v0_B_base_openrouter_20261110T173806194747",
+  "run_id": "v0_B_base_openrouter_20261110T174148296323",
   "version": "v0",
   "artifact_version": "v0+peb1c8179815b+te69bc53ed884",
   "prompt_hash": "eb1c8179815bd79d34de7d326420bb99b3072e6e8ae96464c02d4411f905fc68",
@@ -8,13 +8,13 @@
   "suite": "base",
   "provider": "openrouter",
   "model": "openai/gpt-4o-mini",
-  "system_prompt": "D:\\AI_Thuc_Chien\\LAB\\K5-L3B-DAY03-NguyenLeDangKhoa-2A202603847-PromptEngineeringToolCalling\\starter_v0\\artifacts\\system_prompt.md",
-  "tools": "D:\\AI_Thuc_Chien\\LAB\\K5-L3B-DAY03-NguyenLeDangKhoa-2A202603847-PromptEngineeringToolCalling\\starter_v0\\artifacts\\tools.yaml",
+  "system_prompt": "D:\\AI_In_Action\\LabCode\\K5-L3B-DAY03-NguyenLeDangKhoa-2A202603847-PromptEngineeringToolCalling\\starter_v0\\artifacts\\system_prompt.md",
+  "tools": "D:\\AI_In_Action\\LabCode\\K5-L3B-DAY03-NguyenLeDangKhoa-2A202603847-PromptEngineeringToolCalling\\starter_v0\\artifacts\\tools.yaml",
   "eval_cases": "data\\eval_base.json",
   "dataset_id": "day03_v2_research_base",
   "dataset_role": "base",
   "description": "Core eval cho research agent: routing đúng tool + đúng args, hỏi lại khi thiếu (ask_user), xác nhận trước khi gửi, và xử lý câu ngoài phạm vi / không cần tool. Chấm trên tool_calls + args (subset). KHÔNG sửa file này — chỉ thêm case vào eval_group.json.",
-  "generated_at": "2026-11-10T17:38:06",
+  "generated_at": "2026-11-10T17:41:48",
   "summary": {
     "total_cases": 20,
     "measured_cases": 20,
@@ -98,7 +98,7 @@
                 "metrics": {
                   "favorites": 0,
                   "retweets": 53,
-                  "views": "47471"
+                  "views": "47472"
                 }
               }
             ]
@@ -160,61 +160,61 @@
             "search_type": "Latest",
             "items": [
               {
-                "title": "一张表，把 OpenCode 现在免费的模型全列出来了。",
-                "summary": "一张表，把 OpenCode 现在免费的模型全列出来了。\n\nLongCat 2.5 能免费两周，1M 上下文，多模态，官方说不留存数据，速率和 GPT-5 同一档。\n\nMiniMax 也在免费名单里，opencode 自家模型本来就不收输入价。\n\n表放图里了，只写了核实过的这几行，剩下的自己去对一下。\n\n你们现在主力免费模型是哪一个？ https://t.co/M7kUB2v3Bp",
-                "url": "https://x.com/hodu382759/status/2120103041638469817",
-                "source": "@hodu382759",
-                "date": "Tue Nov 10 10:35:29 +0000 2026",
+                "title": "@xbquan @grok Opus 4.7 七天后 GPT-5.5、Sonnet 5 九天后 GPT-5.6、Fable 5.1 两天后 GPT-6 Astra，这规律我越看越觉得像在等一个固定剧本，GPT-6.2 怕是已经在路上了，Op",
+                "summary": "@xbquan @grok Opus 4.7 七天后 GPT-5.5、Sonnet 5 九天后 GPT-5.6、Fable 5.1 两天后 GPT-6 Astra，这规律我越看越觉得像在等一个固定剧本，GPT-6.2 怕是已经在路上了，OpenAI 这次要是再拖，大家是真要笑场了。",
+                "url": "https://x.com/Betaer/status/2120103886358982924",
+                "source": "@Betaer",
+                "date": "Tue Nov 10 10:38:50 +0000 2026",
                 "metrics": {
                   "favorites": 0,
                   "retweets": 0,
-                  "views": "12"
+                  "views": "13"
                 }
               },
               {
-                "title": "https://t.co/mo3vl3ZYOH",
-                "summary": "https://t.co/mo3vl3ZYOH",
-                "url": "https://x.com/MLBear2/status/2120102706950082685",
-                "source": "@MLBear2",
-                "date": "Tue Nov 10 10:34:09 +0000 2026",
-                "metrics": {
-                  "favorites": 1,
-                  "retweets": 1,
-                  "views": "268"
-                }
-              },
-              {
-                "title": "AI 看屏点鼠标还降价，表格和后台工种先被接管。10 月 21 日 GPT-6 学会派一队 agent，今天 GPT-6.1 学会用电脑。",
-                "summary": "AI 看屏点鼠标还降价，表格和后台工种先被接管。10 月 21 日 GPT-6 学会派一队 agent，今天 GPT-6.1 学会用电脑。\n\n能力和价格一起出，比单独任何一项都重。之前会看屏幕的版本贵到只舍得拿来演示，便宜的版本只会在对话框里说话。这次两样合进一个版本，而且更便宜。\n\n回头翻这个号的三条记录。9 月 21 日写的是语音能边听边说，开成了 API；10 月 21 日写的是 GPT-6 能自己派一队 agent 分头干活；今天是它会看屏幕、会点鼠标。38 天，三格，每一格都往「替人做完一段流程」走，没有一格往「聊得更好」走。\n\n10 月 21 日那条我理解成模型在自己内部分工。今天看，分工的对象变成了你电脑上的每一个窗口。那条判断没反，格局小了。\n\n谁先被替，流程岗。\n\n表格、客服、运营这三类活有个共同点，输入是别人给的，输出是固定格式的，中间全靠在几个软件之间来回切。一个运营每天早上从后台导数据，贴进表格，改几个字段，发到群里，这一套动作模型现在能从头看着屏幕做完，按调用计费比按月薪便宜。\n\nOpenAI 的 CEO Altman 的位置不难猜。他卖的是调用量，降价压的是毛利，但企业采购这一头只要用量起来，总盘子比毛利重要得多。所以降价和「会用电脑」必须捆着发，光降价换不来新客户，光会用电脑没人付得起账。\n\n9 月 5 日这个号写过，同一周参议员喊话立法封杀超级智能，创业公司张口要融十亿美元。那天的分岔是管不管。今天的分岔换了，变成花多少钱替掉一个流程岗，这道题轮到采购部门算，国会插不上手。\n\n对股价这件事，老规矩照用。能力 beat 已经是默认预期，一个版本会用电脑，市场早就在等；今天唯一的新信息是价格。高利率下资金为确定性买单，降价卖的正是「成本可预算」这份确定性。强数据不等于强股价，这次强的是便宜。\n\n我大概率会把这次归到今年最重的一次发布，比 GPT-6 本身重。\n\n假如你是那个每天导数据贴表格的人，今天该做的是把自己这套动作写成一页清单，拿这个模型跑一遍。跑通的部分交给它，跑不通的地方就是你明年的岗位说明书。流程归模型，判断归人。这条分界线以后每个季度都会往人这边挪一点。\n\n这件事我没搞懂的是企业采购的决策周期有多长。降价今天生效，但一家公司把客服座席换成模型调用，要过采购、合规、IT 三道门，这个时间差决定了替代是明年的事还是后年的事。\n\n下一次降价落地的那天，流程岗的替代就从试点进预算。",
-                "url": "https://x.com/DaydayStock/status/2120102697173209304",
-                "source": "@DaydayStock",
-                "date": "Tue Nov 10 10:34:07 +0000 2026",
+                "title": "PhotoshopのAIアシストってどれ使ってますか？",
+                "summary": "PhotoshopのAIアシストってどれ使ってますか？\n\n無からの画像生成より写真補正で使えたらめちゃくちゃ楽なんだけど、\nこの4つのモデルで同じプロンプトで補正してもらったら結果が全然違う！\n・Firefly Image 5 \n・Gemini 3(Nano Banana Pro) \n・FLUX.1 Kontext [max] \n・GPT Image 2.5 Sunburst https://t.co/0HjOpQUfET",
+                "url": "https://x.com/xkayokox/status/2120103853559550015",
+                "source": "@xkayokox",
+                "date": "Tue Nov 10 10:38:42 +0000 2026",
                 "metrics": {
                   "favorites": 0,
                   "retweets": 0,
-                  "views": "7"
+                  "views": "9"
                 }
               },
               {
-                "title": "〇(11/10) くた・れAI 。AI依存症になるな ! AIを恋人にするな ！　AIを使うな、自分で考えて文章を書け ! !",
-                "summary": "〇(11/10) くた・れAI 。AI依存症になるな ! AIを恋人にするな ！　AIを使うな、自分で考えて文章を書け ! !\n⑧法令上の公報（真正な特許公報）\n知財関係者（特に、特許担当者）のコメントを求む !!\n2022年１月１２日以降の公報。\n\n特許庁は、「法令上の公報は、公報発行サイトから提供されるものであって、XML形式のものを指します。」、と明言しています。\n\nそして、「ＸＭＬ形式」とは、以下の資料のフロントページにあるようなものです。\n\nhttps://t.co/bHC0RUmH1C\n\nまた、2022年１月１１日以前に特許庁より発行されていたPDF公報は廃止されました。\n\n従来は、この廃止されたPDF公報が「真正な公報」とみなされてきたと思います。\n\n何となれば、特許庁が発行するものが唯一のものでしたので。\n\n2022年１月１２日以降は、INPITをはじめ、多くの民間のベンダーが独自の手法により作成したものが、「独自PDF公報」として流通しています。\n\nそして、INPITは、「公報はＸＭＬですので、レイアウトもページも存在しません。」、「したがって、公報標準レイアウト/ページの概念はございません。」ともいっています。\n\n更に、「公報はＸＭＬであり、ＰＤＦ化するに当たっての制限はありません。」と断言しています。\n\n加えて、INPITは「J-PlatPatから提供されるPDFを「標準」とする意図はなく、民間事業者が提供するPDFも流通すると考えております。」、と回答しています。\n\n従って、「真正な特許公報」とは、特許庁の公報発行サイトから提供される「XML形式」のみのもので、INPITや各民間事業者の作成した「独自PDF公報」は「法令上の公報」とはいえないことになります。\n\n以上の如く、J-PlatPatからダウンロードして得られる「独自PDF公報」や、民間事業者、たとえば日立システムズのSRPARTNERより得られる「独自PDF公報」などは、　それぞれ異なったものであり、「真正な公報」とは見なすことができないと考えます。\n\nくどいようですが、INPITのJ-PlatPatよりダウンロードして得られる「PDF公報」は、あくまでも「独自PDF公報」であって、「真正な公報」とは言えないものと考えます。\n\nましてや、民間事業者が作成する「独自PDF公報」も、これまた「真正な公報」と、言えません。\n\nここで、「独自PDF公報」の発行にあたって、INPITのJ-PlatPatにおいて奇怪な過去がありました。\n\n何故か、２０２２年１月１２日〜１月２４日の１３日間のあいだ、J-PlatPatよりダウンロードした「独自ＰＤＦ公報」が異様なものでした。\n\nhttps://t.co/iIBNCtOcDR\n\n即ち、フロントページの右下に表示される「代表図面」、および３ページの図面が、一部欠けていました。\n\nさらに、２０２２年１月２０日発行の「特開2022-014916」の独自PDF公報も代表図面と他の図面に欠落がありました。\n\nhttps://t.co/fiIqp9T5N8\n\n一方、民間事業者である日立システムズのSRPARTNERよりダウンロードした「特開2022-014916」の独自PDF公報には欠落箇所はありませんでした。\n\nhttps://t.co/lCT5dRre7A\n\nJ-PlatPatよりダウンロードした「独自ＰＤＦ公報」の異様さは同年１月の２４日まで続いたようです。\n\nhttps://t.co/PrVwFrEG9m\n\n代表図面（図３）の（２）の部分に、欠落がある。\n\nこのように１３日間も続いた、忌まわしい過去を持つINPITが提供するJ-PlatPatよりダウンロードした「独自ＰＤＦ公報」、その中でも【請求項】や『本文全文』に、現時点において信頼性はあるのでしょうか、甚だ疑問に思います。\n\n（ハッシュタグ）\n\n＃OpenAI ＃Claude #ChatGPT #Gemini #Copilot #AI ＃生成AI ＃知財 ＃特許 ＃特許調査 #専利 #チャットGPT #GPT-5 #INPIT #JPlatPat ＃note #JPO #USPTO #EPO ＃Patent #GPT #Threads #Bing #VertexAI #DX #IT #DeepSeek #BigTech #manus #Manus #AI画像生成 #IPランドスケープ ＃深層学習 ＃仕事 ＃ディープラーニング #ビジネス #ビジネスモデル ＃知財戦略 ＃知的財産 ＃知的財産権 ＃知的財産高等裁判所 ＃特許法 ＃特許庁 ＃特許情報 ＃特許権者 #くたばれAI\n\n（中文）\n\n该・的AI。别沉迷于AI！别把人工智能（AI）当成你的爱人 ！ 别用AI，自己思考、自己写作 !!\n\n⑧ 专利公报（官方专利公报）\n\n我们正在征求知识产权专业人士（尤其是专利专家）的意见！\n\n2022年1月12日及之后发布的公报。\n\n日本特许厅（JPO）明确指出，“专利公报是指从公报发布网站以XML格式提供的公报。”\n\n“XML格式”是指类似以下文档首页所示的格式：\n\nhttps://t.co/bHC0RUmH1C\n\n此外，日本特许厅在2022年1月11日之前发布的PDF格式公报已被废止。\n\n此前，这些已被废止的PDF格式公报被视为“官方公报”。\n\n这是因为当时只有日本特许厅发布的公报才是官方公报。\n\n自2022年1月12日起，包括INPIT在内的许多私营企业开始分发使用各自方法制作的“专有PDF出版物”。\n\nINPIT还指出，“出版物采用XML格式，因此没有版式或页数限制”，并且“因此不存在标准出版物版式/页数的概念”。\n\n此外，他们还声称“出版物采用XML格式，将其转换为PDF格式没有任何限制”。\n\n另外，INPIT表示，“无意将J-PlatPat提供的PDF指定为‘标准’，并且我们认为私营企业提供的PDF也会被分发”。\n\n因此，“真正的专利出版物”仅指日本特许厅出版物网站提供的“XML格式”，而INPIT和各私营企业制作的“专有PDF出版物”不能被视为“法律认可的出版物”。\n\n如上所述，从 J-PlatPat 下载的“专有PDF 出版物”与从私营公司（例如日立系统公司的 SRPARTNER）获得的“专有PDF 出版物”各不相同，均不能被视为“正版出版物”。\n\n从 INPIT 的 J-PlatPat 下载的“PDF 出版物”仅为“专有 PDF 出版物”，不能被视为“正版出版物”。\n\n此外，私营公司制作的“专有 PDF 出版物”也不能被视为“正版出版物”。\n\n关于“专有 PDF 出版物”的发布，INPIT 的 J-PlatPat 历史上曾发生过一件奇怪的事件。\n\n不知何故，2022 年 1 月 12 日至 1 月 24 日这 13 天内从 J-PlatPat 下载的“专有 PDF 出版物”出现了异常。\n\nhttps://t.co/iIBNCtOcDR\n\n具体来说，首页右下角显示的“代表性图纸”以及第3页的图纸部分缺失。\n\n此外，2022年1月20日发布的“JP 2022-014916”专有PDF版本也存在代表性图纸和其他图纸缺失的情况。\n\nhttps://t.co/fiIqp9T5N8\n\n另一方面，由私营公司日立系统（Hitachi Systems）从SRPARTNER下载的“JP 2022-014916”专有PDF版本则没有缺失任何部分。\n\nhttps://t.co/lCT5dRre7A\n\n从 J-PlatPat 下载的“专有PDF 出版物”的怪异之处似乎一直持续到同年 1 月 24 日。\n\nhttps://t.co/PrVwFrEG9m\n\n代表性图纸（图3）第 (2) 部分存在遗漏。\n\n鉴于这令人遗憾的 13 天经历，我对从J-PlatPat 下载的、由 INPIT 提供的“专有PDF 出版物”的可靠性深表怀疑。\n\n（英文）\n\nDa?n AI .  Don't get addicted to AI ! Don't make AI your lover！ Don't use AI, think and write for yourself !!\n\n⑧ Statutory Official Gazettes (Authentic Patent Gazettes)\n\nSeeking comments from IP professionals (especially those handling patents)!\n\nGazettes are issued on or after January 12, 2022.\n\nThe Japan Patent Office (JPO) has explicitly stated: \"Statutory official gazettes are those provided via the official gazette publication site and refer to the XML format.\"\n\nThe \"XML format\" in question is the type shown on the front page of the following document:\n\nhttps://t.co/bHC0RUmH1C\n\nFurthermore, the PDF gazettes previously issued by the JPO prior to January 11, 2022, have been discontinued.\n\nUntil then, these discontinued PDF gazettes were generally regarded as the \"authentic gazettes.\"\n\nThis was because the version issued by the JPO was the sole official version.\n\nSince January 12, 2022, versions created using proprietary methods by various entities, including INPIT and private-sector vendors—have been circulating as \"proprietary PDF gazettes.\"\n\nINPIT has stated: \"Since the gazette is in XML format, there is no fixed layout or pagination,\" and \"therefore, the concept of a standard layout or page structure for the gazette does not exist.\"\n\nThey have further asserted: \"The gazette is XML data; there are no restrictions regarding its conversion into PDF format.\"\n\nAdditionally, INPIT has responded: \"We do not intend for the PDF provided via J-PlatPat to be considered the 'standard'; we anticipate that PDFs provided by private-sector operators will also be in circulation.\"\n\nConsequently, the \"authentic patent gazette\" refers exclusively to the \"XML format\" provided via the JPO's official publication site; \"proprietary PDF gazettes\" created by INPIT or private-sector vendors cannot be classified as \"statutory official gazettes.\" As outlined above, the \"proprietary PDF gazettes\" obtained via download from J-PlatPat—as well as those obtained from private vendors such as Hitachi Systems' SRPARTNER—differ from one another; consequently, none of them can be considered an \"authentic gazette.\"\n\nThe \"PDF gazettes\" downloaded from INPIT's J-PlatPat are strictly \"proprietary PDF gazettes\" and cannot be regarded as \"authentic gazettes.\"\n\nFurthermore, the \"proprietary PDF gazettes\" produced by private vendors likewise cannot be considered \"authentic gazettes.\"\n\nIn this context, a peculiar incident occurred regarding the issuance of these \"proprietary PDF gazettes\" on INPIT's J-PlatPat.\n\nFor some reason, the \"proprietary PDF gazettes\" downloaded from J-PlatPat during the 13-day period from January 12 to January 24, 2022, were defective.\n\nhttps://t.co/iIBNCtOcDR\n\nSpecifically, the \"representative drawing\" displayed at the bottom right of the front page, as well as drawings on page 3, were partially missing.\n\nAdditionally, the proprietary PDF gazette for \"Tokkai 2022-014916\" (published on January 20, 2022) also contained omissions regarding the representative drawing and other drawings.\n\nhttps://t.co/fiIqp9T5N8\n\nIn contrast, the proprietary PDF gazette for \"Tokkai 2022-014916\" downloaded from the private vendor Hitachi Systems' SRPARTNER service contained no such omissions.\n\nhttps://t.co/lCT5dRre7A\n\nThe anomalies in the \"custom PDF gazettes\" downloaded from J-PlatPat appear to have persisted until January 24 of that same year.\n\nhttps://t.co/PrVwFrEG9m\n\nThere is a missing portion at (2) in the representative drawing (Figure 3).\n\nI seriously question the reliability—at this point in time—of the \"custom PDF gazettes\" downloaded from J-PlatPat, a service provided by INPIT, an organization with a sordid past that has persisted for thirteen days.\n\n #DamnAI #ClaudeCode",
-                "url": "https://x.com/kbozon/status/2120102039057576307",
-                "source": "@kbozon",
-                "date": "Tue Nov 10 10:31:30 +0000 2026",
+                "title": "30% faster, 20% cheaper, under GPT-6 Astra - good numbers. The game changers are Advisor and Orchestrator: dynamic model",
+                "summary": "30% faster, 20% cheaper, under GPT-6 Astra - good numbers. The game changers are Advisor and Orchestrator: dynamic model selection makes an expensive flagship realistic. I spent $1,800 on one premium-model session to learn the alternative.  https://t.co/D7NCWpMF0P",
+                "url": "https://x.com/DiscursiveTim/status/2120103717995475336",
+                "source": "@DiscursiveTim",
+                "date": "Tue Nov 10 10:38:10 +0000 2026",
                 "metrics": {
                   "favorites": 0,
                   "retweets": 0,
-                  "views": "32"
+                  "views": "2"
                 }
               },
               {
-                "title": "https://t.co/PzQ6iYbDN4 IS TURNING AI ACCESS INTO A MORE CONNECTED EXPERIENCE: HERE'S WHAT CHANGED LAST WEEK",
-                "summary": "https://t.co/PzQ6iYbDN4 IS TURNING AI ACCESS INTO A MORE CONNECTED EXPERIENCE: HERE'S WHAT CHANGED LAST WEEK\n\nThe progress of an AI ecosystem is not measured by the number of models it offers alone. It also comes down to how easily people can access those models, how developers integrate them and how smoothly different tools work together.\n\nhttps://t.co/PzQ6iYbDN4's November 2–8 weekly update highlights progress across all these areas.\n\nHere are five developments worth knowing.\n\n➤ 1. LESS FRICTION FOR DEVELOPERS\n\nGitHub one-click login is now available, allowing developers to access https://t.co/PzQ6iYbDN4 through their GitHub accounts without going through additional manual registration steps.\n\nA small improvement, but one that makes getting started more convenient.\n\n➤ 2. MORE INTELLIGENCE, LOWER ENTRY COST\n\nTencent Hunyuan Hy4 has arrived on https://t.co/PzQ6iYbDN4 API and Web Chat.\n\nWith visual understanding, text and image input, and a 1M-token context window, it is designed for complex tasks and long-running agent workflows.\n\nEven better, users can access it at 50% off through the end of the year.\n\n➤ 3. AUTOMATION THAT DOESN'T STOP AT FUNDING\n\nhttps://t.co/PzQ6iYbDN4 now supports API account top-ups.\n\nDevelopers can integrate recharge functionality into custom AI agents and automated workflows, reducing manual operations and helping minimise interruptions caused by insufficient balances.\n\n➤ 4. A BROADER AI PLAYGROUND\n\nhttps://t.co/PzQ6iYbDN4's October ecosystem report highlighted some impressive growth:\n\n- Nearly 3 million users.\n- More than 70 leading foundation models.\n- Support for 11 languages.\n- Four new Seedance video-generation models.\n- A new LLM leaderboard, with domestic models occupying the top eight positions in token usage.\n\nThis gives users more options across different AI applications.\n\n➤ 5. LOCAL AGENTS AND CHANGING MODEL TRENDS\n\nhttps://t.co/PzQ6iYbDN4 also published its BAIclaw FAQ, explaining features, model access and compatibility. BAIclaw supports more than 70 models through https://t.co/PzQ6iYbDN4 API, including GPT, Claude and Gemini. It is free, supports macOS 11 and later, with Windows coming soon.\n\nMeanwhile, the October 30–November 5 Chinese model token rankings showed MiniMax rising to second place, Qwen gaining momentum and DeepSeek maintaining a dominant 89.70% usage share.\n\nWHAT CONNECTS ALL THESE UPDATES?\n\nEasier access, more model choices, improved developer tools and better support for automated workflows.\n\nhttps://t.co/PzQ6iYbDN4 is developing an ecosystem where users can explore intelligence, developers can build with it and AI agents can become more practical to operate.\n\nThe interesting part is how these individual improvements contribute to one broader vision: making advanced AI easier to access and put to work.\n\nExplore: https://t.co/ThiOsMJe3w\n\nCommunity: https://t.co/ZoOZiQEfBH\n\n@justinsuntron @BAI_AGI \n#TRONEcoStar",
-                "url": "https://x.com/Crypt_cap/status/2120101847071420471",
-                "source": "@Crypt_cap",
-                "date": "Tue Nov 10 10:30:44 +0000 2026",
+                "title": "LLMの翻訳に対する人間の修正履歴をRAGとして再利用するHuman-in-the-loopは有効か？",
+                "summary": "LLMの翻訳に対する人間の修正履歴をRAGとして再利用するHuman-in-the-loopは有効か？\n\n→結論：有効。 過去の修正履歴を検索し、In-context Learning（ICL）で再利用することで、Fine-tuningなしに翻訳精度を改善できた。ただし、単純に修正例を追加するだけでは性能が悪化する場合もある。\n\nMT Summit 2023（被引用数：約50件）\n\n背景\n\nマカオ大学の研究チームによる研究。従来の機械翻訳では、人間の修正をモデルに反映するためにFine-tuningが必要だった。そこで、修正履歴を外部DBに蓄積し、LLMの推論時に再利用するHuman-in-the-loopを提案。\n\n方法\n\nGPT-3.5-Turboを使用し、ドイツ語→英語翻訳を5領域（IT、宗教、法律、医療、字幕）で評価。\n正解訳との差分から修正指示を自動生成し、人間のフィードバックを模擬。\n過去の類似した修正履歴をBM25で検索し、Few-shot ICLで翻訳を修正。\n修正前後の翻訳をLLM自身に比較させる方法も検証。\n\n結果\n\n修正履歴を単純に与えるだけでは、翻訳精度が低下する場合があった。\n修正前後を比較して選択する方法では、5領域すべてでBLEUが改善（最大+0.9ポイント）。\n実際の人間による修正や作業効率の改善は未検証。\n\nタイトル： Human-in-the-loop Machine Translation with Large Language Model\n\nURL： https://t.co/cBE9894k08",
+                "url": "https://x.com/y_watanabe1208/status/2120103665730285644",
+                "source": "@y_watanabe1208",
+                "date": "Tue Nov 10 10:37:58 +0000 2026",
                 "metrics": {
-                  "favorites": 1,
+                  "favorites": 0,
+                  "retweets": 0,
+                  "views": "6"
+                }
+              },
+              {
+                "title": "我的 AI 小店开张啦，有需要的朋友可以逛逛，",
+                "summary": "我的 AI 小店开张啦，有需要的朋友可以逛逛，\n下单后记得进售后群，售后有保障 链接：https://t.co/kSPFOOQjfh\n售后QQ群：249266246\n现放出8元优惠券：4696422817（记得三天内使用）\n\n价格如下：\n-------------GPT-------------\n1️⃣成品号Plus（质保28天/30天）:75 R / 82 R \n2️⃣直充 Plus：120 R \n3️⃣直充 Pro 100：640 R\n4️⃣直充 Pro 200：1150 R\n5️⃣直充 Pro 500：3380 R\n6️⃣Codex长效接码 ：5 R\n------------Gr0k--------------\n1️⃣直充 PLUS：68\n2️⃣直充 Premium：160\n3️⃣直充 SUPER:155\n4️⃣free账号：8\n\n后续更多品类将陆续上线",
+                "url": "https://x.com/E82362120241/status/2120103579130249536",
+                "source": "@E82362120241",
+                "date": "Tue Nov 10 10:37:37 +0000 2026",
+                "metrics": {
+                  "favorites": 0,
                   "retweets": 0,
                   "views": "10"
                 }
@@ -448,8 +448,8 @@
                 "date": "Tue Nov 10 10:34:54 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 46,
-                  "views": "261184"
+                  "retweets": 68,
+                  "views": "303641"
                 }
               },
               {
@@ -459,9 +459,9 @@
                 "source": "@elonmusk",
                 "date": "Tue Nov 10 10:34:24 +0000 2026",
                 "metrics": {
-                  "favorites": 513,
-                  "retweets": 85,
-                  "views": "271562"
+                  "favorites": 1037,
+                  "retweets": 163,
+                  "views": "308140"
                 }
               },
               {
@@ -472,8 +472,8 @@
                 "date": "Tue Nov 10 10:28:53 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 49,
-                  "views": "313751"
+                  "retweets": 61,
+                  "views": "323553"
                 }
               },
               {
@@ -485,7 +485,7 @@
                 "metrics": {
                   "favorites": 0,
                   "retweets": 76,
-                  "views": "409502"
+                  "views": "412974"
                 }
               },
               {
@@ -496,8 +496,8 @@
                 "date": "Tue Nov 10 09:13:15 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 154,
-                  "views": "436869"
+                  "retweets": 155,
+                  "views": "439218"
                 }
               },
               {
@@ -508,8 +508,8 @@
                 "date": "Tue Nov 10 03:30:09 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 1364,
-                  "views": "557463"
+                  "retweets": 1368,
+                  "views": "558262"
                 }
               },
               {
@@ -521,7 +521,7 @@
                 "metrics": {
                   "favorites": 0,
                   "retweets": 418,
-                  "views": "485034"
+                  "views": "485739"
                 }
               },
               {
@@ -532,8 +532,8 @@
                 "date": "Tue Nov 10 03:16:09 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 2239,
-                  "views": "464648"
+                  "retweets": 2247,
+                  "views": "465319"
                 }
               },
               {
@@ -544,8 +544,8 @@
                 "date": "Tue Nov 10 03:13:39 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 350,
-                  "views": "439837"
+                  "retweets": 351,
+                  "views": "440498"
                 }
               },
               {
@@ -556,8 +556,8 @@
                 "date": "Tue Nov 10 03:13:25 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 800,
-                  "views": "408108"
+                  "retweets": 804,
+                  "views": "408739"
                 }
               }
             ]
@@ -597,8 +597,8 @@
             "name": "lookup",
             "args": {
               "query": "tin công nghệ",
-              "topic": "news",
               "timeframe": "week",
+              "topic": "news",
               "max_results": 5
             }
           }
@@ -614,8 +614,8 @@
           "tool": "lookup",
           "args": {
             "query": "tin công nghệ",
-            "topic": "news",
             "timeframe": "week",
+            "topic": "news",
             "max_results": 5
           },
           "result": {
@@ -720,15 +720,15 @@
             "search_type": "Top",
             "items": [
               {
-                "title": "Privacy should advance as fast as intelligence. OpenAI Private Intelligence gives businesses stronger controls over thei",
-                "summary": "Privacy should advance as fast as intelligence. OpenAI Private Intelligence gives businesses stronger controls over their data while using our most capable models.\n\nWe’re building these protections in close collaboration with some of our largest customers to help businesses apply frontier AI to their most sensitive work.\nhttps://t.co/BiA4N8FQVH",
-                "url": "https://x.com/OpenAI/status/2116186509384815084",
-                "source": "@OpenAI",
-                "date": "Fri Oct 30 15:12:35 +0000 2026",
+                "title": "I still don't understand why everyone is not using this yet. Thanks to it, a year ago I increased my income to 15,000 do",
+                "summary": "I still don't understand why everyone is not using this yet. Thanks to it, a year ago I increased my income to 15,000 dollars a month\n\nAndrey Karpathy, co-founder of OpenAI, published a simple idea that got 25 million views: stop using AI to write code, use it to build a second brain\n\nYou point Claude Code to a folder, drop any source in there (an article, transcript, PDF) and Claude reads it, links it, and saves it into a living wiki of everything you know. It compounds like interest: the more you feed it, the smarter it gets\n\nHere is the gist:\n\nInstall Obsidian, create a vault, open it in Claude Code\n\nPaste the file with Karpathy's wiki idea and tell Claude to build it\n\nClaude creates three folders: raw for sources, wiki for its pages, CLAUDE\nwhich runs everything\n\nDrop any source into raw and say ingest this\n\nAsk questions across everything, forever\n\n5 minutes to set up, and you never start with an empty chat again\n\nThe full instructions can be found in the article below",
+                "url": "https://x.com/Bober_smart/status/2119070145284841481",
+                "source": "@Bober_smart",
+                "date": "Sat Nov 07 14:11:07 +0000 2026",
                 "metrics": {
-                  "favorites": 3045,
-                  "retweets": 229,
-                  "views": "475595"
+                  "favorites": 1181,
+                  "retweets": 128,
+                  "views": "95500"
                 }
               },
               {
@@ -740,7 +740,7 @@
                 "metrics": {
                   "favorites": 21424,
                   "retweets": 2002,
-                  "views": "4127820"
+                  "views": "4127942"
                 }
               },
               {
@@ -752,31 +752,31 @@
                 "metrics": {
                   "favorites": 8436,
                   "retweets": 754,
-                  "views": "1399333"
+                  "views": "1399361"
                 }
               },
               {
-                "title": "Today, we’re bringing GPT-Image-2.6 to Codex and the API.",
-                "summary": "Today, we’re bringing GPT-Image-2.6 to Codex and the API.\n\nImage-2.6 Flare and Sunburst, our two new API image models, generate images 50% faster than before.\n\nAt medium or high quality, Sunburst keeps details more consistent from one edit to the next. https://t.co/iNhtjqKueJ",
-                "url": "https://x.com/OpenAIDevs/status/2118124753340756055",
-                "source": "@OpenAIDevs",
-                "date": "Wed Nov 04 23:34:28 +0000 2026",
+                "title": "Privacy should advance as fast as intelligence. OpenAI Private Intelligence gives businesses stronger controls over thei",
+                "summary": "Privacy should advance as fast as intelligence. OpenAI Private Intelligence gives businesses stronger controls over their data while using our most capable models.\n\nWe’re building these protections in close collaboration with some of our largest customers to help businesses apply frontier AI to their most sensitive work.\nhttps://t.co/BiA4N8FQVH",
+                "url": "https://x.com/OpenAI/status/2116186509384815084",
+                "source": "@OpenAI",
+                "date": "Fri Oct 30 15:12:35 +0000 2026",
                 "metrics": {
-                  "favorites": 3775,
-                  "retweets": 317,
-                  "views": "385200"
+                  "favorites": 3045,
+                  "retweets": 229,
+                  "views": "475600"
                 }
               },
               {
-                "title": "I still don't understand why everyone is not using this yet. Thanks to it, a year ago I increased my income to 15,000 do",
-                "summary": "I still don't understand why everyone is not using this yet. Thanks to it, a year ago I increased my income to 15,000 dollars a month\n\nAndrey Karpathy, co-founder of OpenAI, published a simple idea that got 25 million views: stop using AI to write code, use it to build a second brain\n\nYou point Claude Code to a folder, drop any source in there (an article, transcript, PDF) and Claude reads it, links it, and saves it into a living wiki of everything you know. It compounds like interest: the more you feed it, the smarter it gets\n\nHere is the gist:\n\nInstall Obsidian, create a vault, open it in Claude Code\n\nPaste the file with Karpathy's wiki idea and tell Claude to build it\n\nClaude creates three folders: raw for sources, wiki for its pages, CLAUDE\nwhich runs everything\n\nDrop any source into raw and say ingest this\n\nAsk questions across everything, forever\n\n5 minutes to set up, and you never start with an empty chat again\n\nThe full instructions can be found in the article below",
-                "url": "https://x.com/Bober_smart/status/2119070145284841481",
+                "title": "I still don't understand why everyone is not using this yet. Thanks to it, a year ago I increased my income to 17,000 do",
+                "summary": "I still don't understand why everyone is not using this yet. Thanks to it, a year ago I increased my income to 17,000 dollars a month\n\nAndrey Karpathy, co-founder of OpenAI, published a simple idea that got 16 million views: stop using AI to write code, use it to build a second brain\n\nYou point Claude Code to a folder, drop any source in there (an article, transcript, PDF) and Claude reads it, links it, and saves it into a living wiki of everything you know. It compounds like interest: the more you feed it, the smarter it gets\n\nHere is the gist:\n\nInstall Obsidian, create a vault, open it in Claude Code\n\nPaste the file with Karpathy's wiki idea and tell Claude to build it\n\nClaude creates three folders: raw for sources, wiki for its pages, CLAUDE\nwhich runs everything\n\nDrop any source into raw and say \"ingest this\"\n\nAsk questions across everything, forever\n\nFive minutes to set up, and you never start with an empty chat again\n\nThe full step-by-step guide is in the article. Save to bookmarks",
+                "url": "https://x.com/Bober_smart/status/2090859011365056720",
                 "source": "@Bober_smart",
-                "date": "Sat Nov 07 14:11:07 +0000 2026",
+                "date": "Fri Aug 21 17:50:09 +0000 2026",
                 "metrics": {
-                  "favorites": 1181,
-                  "retweets": 128,
-                  "views": "95491"
+                  "favorites": 11359,
+                  "retweets": 1466,
+                  "views": "2888588"
                 }
               }
             ]
@@ -808,7 +808,7 @@
           {
             "name": "send",
             "args": {
-              "text": "Nguyên hàm của x^2 là \\( \\frac{x^3}{3} + C \\), trong đó C là hằng số tích phân."
+              "text": "Nguyên hàm của x^2 là \\( \\frac{x^3}{3} + C \\), trong đó \\( C \\) là hằng số tùy ý."
             }
           }
         ],
@@ -824,7 +824,7 @@
         {
           "tool": "send",
           "args": {
-            "text": "Nguyên hàm của x^2 là \\( \\frac{x^3}{3} + C \\), trong đó C là hằng số tích phân."
+            "text": "Nguyên hàm của x^2 là \\( \\frac{x^3}{3} + C \\), trong đó \\( C \\) là hằng số tùy ý."
           },
           "result": {
             "tool": "send_telegram",
@@ -855,7 +855,7 @@
         "routing_correct": true,
         "args_correct": true,
         "actual_tool_calls": [],
-        "actual_text": "Tôi là một trợ lý nghiên cứu nhanh chóng và chủ động, có khả năng tìm kiếm thông tin, lấy nội dung từ internet, theo dõi mạng xã hội, và gửi thông điệp. Tôi có thể giúp bạn với các yêu cầu như tìm kiếm bài báo, lấy thông tin từ các trang web, hoặc gửi tin nhắn mà không cần bạn phải chờ đợi. Nếu bạn có bất kỳ yêu cầu nào, hãy cho tôi biết!",
+        "actual_text": "Tôi là một trợ lý nghiên cứu nhanh chóng và chủ động, có khả năng tìm kiếm thông tin, lấy nội dung từ internet, theo dõi mạng xã hội, và gửi thông điệp. Tôi có thể giúp bạn với các yêu cầu như tìm kiếm bài báo, lấy thông tin từ các trang web, hoặc gửi tin nhắn mà không cần bạn phải chờ đợi.",
         "case_failure_type": "unnecessary_tool",
         "observed_mismatch": null,
         "failure_type": null,
@@ -925,7 +925,7 @@
                 "metrics": {
                   "favorites": 0,
                   "retweets": 53,
-                  "views": "47471"
+                  "views": "47472"
                 }
               },
               {
@@ -948,8 +948,8 @@
                 "date": "Wed Nov 04 01:40:12 +0000 2026",
                 "metrics": {
                   "favorites": 20672,
-                  "retweets": 1019,
-                  "views": "10650540"
+                  "retweets": 1020,
+                  "views": "10650635"
                 }
               },
               {
@@ -973,7 +973,7 @@
                 "metrics": {
                   "favorites": 10115,
                   "retweets": 494,
-                  "views": "1656548"
+                  "views": "1656593"
                 }
               }
             ]
@@ -1075,7 +1075,7 @@
           {
             "name": "send",
             "args": {
-              "text": "Bản tin này"
+              "text": "Bản tin mới: Hãy theo dõi những cập nhật mới nhất từ chúng tôi!"
             }
           }
         ],
@@ -1092,7 +1092,7 @@
         {
           "tool": "send",
           "args": {
-            "text": "Bản tin này"
+            "text": "Bản tin mới: Hãy theo dõi những cập nhật mới nhất từ chúng tôi!"
           },
           "result": {
             "tool": "send_telegram",
@@ -1228,11 +1228,11 @@
             "search_type": "Latest",
             "items": [
               {
-                "title": "The AI slop debate misses something. Most of it isn't bad because a model made it, it's bad because nobody with taste wa",
-                "summary": "The AI slop debate misses something. Most of it isn't bad because a model made it, it's bad because nobody with taste was directing it. Brands feel that in the first second.",
-                "url": "https://x.com/zardthecreator/status/2120103567985881139",
-                "source": "@zardthecreator",
-                "date": "Tue Nov 10 10:37:34 +0000 2026",
+                "title": "@the_elf_left @lucasfresno Aí corta pra TENTAR DE NOVO E DE NOVO",
+                "summary": "@the_elf_left @lucasfresno Aí corta pra TENTAR DE NOVO E DE NOVO",
+                "url": "https://x.com/JornalistaEmo/status/2120104499855479037",
+                "source": "@JornalistaEmo",
+                "date": "Tue Nov 10 10:41:17 +0000 2026",
                 "metrics": {
                   "favorites": 0,
                   "retweets": 0,
@@ -1240,11 +1240,11 @@
                 }
               },
               {
-                "title": "Sinii kakk aku bisa parafrase manual no ai no curang, boleh chat wa di bio yaa utk detailnya #zonauang #bealanja #parafr",
-                "summary": "Sinii kakk aku bisa parafrase manual no ai no curang, boleh chat wa di bio yaa utk detailnya #zonauang #bealanja #parafrase #jokitugas https://t.co/Updakcf99C",
-                "url": "https://x.com/moonparafrase/status/2120103567612895496",
-                "source": "@moonparafrase",
-                "date": "Tue Nov 10 10:37:34 +0000 2026",
+                "title": "@yhimanshu22456 @karbonx6 @thenamanraj Building in public with Python and AI automation sounds exciting — happy to conne",
+                "summary": "@yhimanshu22456 @karbonx6 @thenamanraj Building in public with Python and AI automation sounds exciting — happy to connect.",
+                "url": "https://x.com/yunchanyq6/status/2120104498463170588",
+                "source": "@yunchanyq6",
+                "date": "Tue Nov 10 10:41:16 +0000 2026",
                 "metrics": {
                   "favorites": 0,
                   "retweets": 0,
@@ -1252,11 +1252,11 @@
                 }
               },
               {
-                "title": "@AbdouAziz666 a solo founder in dakar building with ai agents, rust and next.js is a serious stack. i'm bojan, i run a f",
-                "summary": "@AbdouAziz666 a solo founder in dakar building with ai agents, rust and next.js is a serious stack. i'm bojan, i run a free trading academy",
-                "url": "https://x.com/bojan_ai/status/2120103565607976963",
-                "source": "@bojan_ai",
-                "date": "Tue Nov 10 10:37:34 +0000 2026",
+                "title": "@Doom0701 Ai paje",
+                "summary": "@Doom0701 Ai paje",
+                "url": "https://x.com/PeregrinoNormal/status/2120104498370695254",
+                "source": "@PeregrinoNormal",
+                "date": "Tue Nov 10 10:41:16 +0000 2026",
                 "metrics": {
                   "favorites": 0,
                   "retweets": 0,
@@ -1264,11 +1264,11 @@
                 }
               },
               {
-                "title": "https://t.co/KTBT8hvPbs",
-                "summary": "https://t.co/KTBT8hvPbs\n↑ PropGPT. AI analysis and picks for sports player props 🏈",
-                "url": "https://x.com/ski0xFF/status/2120103565259862047",
-                "source": "@ski0xFF",
-                "date": "Tue Nov 10 10:37:34 +0000 2026",
+                "title": "@ferangoncrazy She AI",
+                "summary": "@ferangoncrazy She AI",
+                "url": "https://x.com/KidmanChris/status/2120104495346520084",
+                "source": "@KidmanChris",
+                "date": "Tue Nov 10 10:41:15 +0000 2026",
                 "metrics": {
                   "favorites": 0,
                   "retweets": 0,
@@ -1276,11 +1276,11 @@
                 }
               },
               {
-                "title": "I'm not needy… I just happen to really want a head pat right now. 😌 #AnimeArt #AIart #DailyMood#AIイラスト #Waifu 🙌 https://",
-                "summary": "I'm not needy… I just happen to really want a head pat right now. 😌 #AnimeArt #AIart #DailyMood#AIイラスト #Waifu 🙌 https://t.co/ddxaAu9GRN",
-                "url": "https://x.com/vonutb96499/status/2120103560860033098",
-                "source": "@vonutb96499",
-                "date": "Tue Nov 10 10:37:33 +0000 2026",
+                "title": "@HunterSCBcrypto @vangrid_io This project could revolutionize data collection for AI development",
+                "summary": "@HunterSCBcrypto @vangrid_io This project could revolutionize data collection for AI development",
+                "url": "https://x.com/Omme_82/status/2120104494793158908",
+                "source": "@Omme_82",
+                "date": "Tue Nov 10 10:41:15 +0000 2026",
                 "metrics": {
                   "favorites": 0,
                   "retweets": 0,
@@ -1416,8 +1416,8 @@
                 "date": "Tue Nov 10 10:34:54 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 53,
-                  "views": "269508"
+                  "retweets": 70,
+                  "views": "307812"
                 }
               },
               {
@@ -1427,9 +1427,9 @@
                 "source": "@elonmusk",
                 "date": "Tue Nov 10 10:34:24 +0000 2026",
                 "metrics": {
-                  "favorites": 631,
-                  "retweets": 100,
-                  "views": "277229"
+                  "favorites": 1103,
+                  "retweets": 169,
+                  "views": "312558"
                 }
               },
               {
@@ -1440,8 +1440,8 @@
                 "date": "Tue Nov 10 10:28:53 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 51,
-                  "views": "315287"
+                  "retweets": 61,
+                  "views": "324784"
                 }
               },
               {
@@ -1452,8 +1452,8 @@
                 "date": "Tue Nov 10 09:46:52 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 76,
-                  "views": "410541"
+                  "retweets": 77,
+                  "views": "413509"
                 }
               },
               {
@@ -1464,8 +1464,8 @@
                 "date": "Tue Nov 10 09:13:15 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 154,
-                  "views": "437226"
+                  "retweets": 156,
+                  "views": "439582"
                 }
               }
             ]
@@ -1661,7 +1661,7 @@
                 "metrics": {
                   "favorites": 9177,
                   "retweets": 772,
-                  "views": "944029"
+                  "views": "944076"
                 }
               },
               {
@@ -1671,9 +1671,9 @@
                 "source": "@karpathy",
                 "date": "Sun Nov 01 18:14:46 +0000 2026",
                 "metrics": {
-                  "favorites": 52354,
+                  "favorites": 52355,
                   "retweets": 4836,
-                  "views": "5723747"
+                  "views": "5723820"
                 }
               },
               {
@@ -1841,8 +1841,8 @@
                 "date": "Tue Nov 10 10:34:54 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 53,
-                  "views": "269508"
+                  "retweets": 73,
+                  "views": "307812"
                 }
               },
               {
@@ -1852,9 +1852,9 @@
                 "source": "@elonmusk",
                 "date": "Tue Nov 10 10:34:24 +0000 2026",
                 "metrics": {
-                  "favorites": 658,
-                  "retweets": 106,
-                  "views": "277229"
+                  "favorites": 1137,
+                  "retweets": 170,
+                  "views": "312558"
                 }
               },
               {
@@ -1865,8 +1865,8 @@
                 "date": "Tue Nov 10 10:28:53 +0000 2026",
                 "metrics": {
                   "favorites": 0,
-                  "retweets": 52,
-                  "views": "316808"
+                  "retweets": 61,
+                  "views": "326009"
                 }
               }
             ]
@@ -1964,22 +1964,22 @@
                 "title": "Artificial Star Andrew Garfield Once Admired OpenAI CEO Sam Altman",
                 "url": "https://variety.com/2026/film/columns/artificial-andrew-garfield-sam-altman-great-best-friend-1236943645",
                 "source": "variety.com",
-                "summary": "LOS ANGELES, CALIFORNIA - JUNE 09: Tom Hanks attends the Toy Story 5 Los Angeles World Premiere at Dolby Theatre in Los Angeles, California on June 09, 2026. (Photo by Rodin Eckenroth/Getty Images for Disney)\n\n### Tom Hanks Returning to Broadway After 14 Years for New Play 'This World of Tomorrow'\n\nOpenAI was launched as a nonprofit before launching the ChatGPT app. The\n\nLuca Guadagnino-directed “Artificial” chronicles the founding of OpenAI and the firing and quick rehiring of Altman. [...] “The first time I saw Sam, he was testifying in front of Congress and he was saying incredibly righteous stuff,” Garfield said Monday night during a Q&A following an AMPAS screening of the film at the Academy Museum in Los Angeles. “He was talking about transparency; he was talking about the risks. He was very, very casually saying, ‘No, I don’t have any equity in OpenAI. I’m just doing this because I love the technology and I’m passionate and I actually care about human beings.’”",
+                "summary": "LOS ANGELES, CALIFORNIA - JUNE 09: Tom Hanks attends the Toy Story 5 Los Angeles World Premiere at Dolby Theatre in Los Angeles, California on June 09, 2026. (Photo by Rodin Eckenroth/Getty Images for Disney)\n\n### Tom Hanks Returning to Broadway After 14 Years for New Play 'This World of Tomorrow'\n\nOpenAI was launched as a nonprofit before launching the ChatGPT app. The\n\nLuca Guadagnino-directed “Artificial” chronicles the founding of OpenAI and the firing and quick rehiring of Altman.",
                 "score": 0.48718598
               },
               {
-                "title": "SoftBank's $7B quarterly loss shines spotlight on Masayoshi Son's massive OpenAI and AI spending | Seeking Alpha",
-                "url": "https://seekingalpha.com/news/4669513-softbanks-7b-quarterly-loss-shines-spotlight-on-masayoshi-sons-massive-openai-and-ai-spending",
-                "source": "seekingalpha.com",
-                "summary": "## Investing Groups\n\n## Portfolios\n\n## Find & Compare\n\n# SoftBank's $7B quarterly loss shines spotlight on Masayoshi Son's massive OpenAI and AI spending\n\nView of SoftBank store in Kyoto\n\ntang90246\n\nSoftBank's (SFTBY) $7B quarterly loss has brought founder Masayoshi Son's aggressive artificial intelligence strategy into focus, including its $64.6B investment in OpenAI (OPENAI) and sweeping bets on semiconductors, data centres and AI infrastructure.",
-                "score": 0.46687052
+                "title": "Australia to mandate AI breach reporting, create regulator after OpenAI breach | Reuters",
+                "url": "https://www.reuters.com/world/australia-tightens-ai-oversight-rules-after-openai-agent-breached-government-2026-11-10",
+                "source": "reuters.com",
+                "summary": "OpenAI has said it learned of the breach only in August ​and that the incident was unintentional. Its review found no evidence that patient records were accessed by ‌the ⁠agent.\n\nThe breach has added to friction between Australia and US technology companies, after Canberra refused ChatGPT maker OpenAI and rival Anthropic exemptions from copyright laws for model training, instead requiring them to negotiate licensing agreements with Australian rights holders. [...] The OpenAI agent gained unauthorised access to the medical statistics portal ​of Medicare, Australia's universal health insurance programme, while conducting research on public medical ​spending, the government said in September. The breach triggered a rapid ⁠government review into the incident.\n\nThe Misinformation Monitor newsletter rounds up international misinformation narratives, with a \"Real or Fake?\" quiz in every edition. Sign up here. [...] SYDNEY, Nov 10 (Reuters) - Australia will require artificial intelligence companies to report breaches ‌and consider changes to criminal law to address \"serious misconduct\", Prime Minister Anthony Albanese said on Tuesday, after an OpenAI agent broke into a government website.",
+                "score": 0.40924495
               },
               {
-                "title": "Australia to launch AI safety regulator after OpenAI's breach of a government portal - ABC News",
-                "url": "https://abcnews.com/Technology/wireStory/australia-launch-ai-safety-regulator-after-openais-breach-138001591",
-                "source": "abcnews.com",
-                "summary": "OpenAI apologized in September for the breach and its slow response.\n\n## Popular Reads\n\n## Dad arrested after allegedly leaving 6-year-old daughter in line for Pokémon cards\n\n## Teacher's aide arrested in connection with NYC jogger's murder: Police\n\n## Wisconsin state trooper detained by ICE\n\n“We are sorry and working to do better in the future,” OpenAI said in a statement. “We also should have handled our response better.” [...] MELBOURNE, Australia -- Australia plans to create an artificial intelligence safety regulator in response to a breach of an Australian health department website by a rogue OpenAI agent in June, Prime Minister Anthony Albanese said Tuesday.\n\nThe regulator would enforce world-leading legislated AI standards that would apply to all frontier AI companies that want to operate in Australia, Albanese said. Financial penalties would apply, although the government has yet to detail those penalties. [...] Albanese told OpenAI chief executive Sam Altman that the U.S. company took too long to inform the government in September that a rogue agent had infiltrated government websites three months earlier, which was the first occurrence of such a breach with the technology.\n\nInformation taken without authorization from the public-facing Medicare Statistics Reporting Service portal on June 18 has since been made public. It is not clear whether the portal breach broke any Australian laws.",
-                "score": 0.4423239
+                "title": "Australia to launch AI safety regulator after OpenAI’s breach of a government portal | The Seattle Times",
+                "url": "https://www.seattletimes.com/business/australia-to-launch-ai-safety-regulator-after-openais-breach-of-a-government-portal",
+                "source": "seattletimes.com",
+                "summary": "Skip to content\n\nBusiness\n\nBusiness\n\n Business\n Nation & World\n Technology\n\n# Australia to launch AI safety regulator after OpenAI’s breach of a government portal\n\nBy \n\nROD McGUIRK\n\nThe Associated Press\n\nMELBOURNE, Australia (AP) — Australia plans to create an artificial intelligence safety regulator in response to a breach of an Australian health department website by a rogue OpenAI agent in June, Prime Minister Anthony Albanese said Tuesday. [...] OpenAI apologized in September for the breach and its slow response.\n\n“We are sorry and working to do better in the future,” OpenAI said in a statement. “We also should have handled our response better.”\n\n## Inquiry recommends possible criminal law changes\n\nA government inquiry into the June breach made several recommendations including that the government consider changing the law. [...] Albanese told OpenAI chief executive Sam Altman that the U.S. company took too long to inform the government in September that a rogue agent had infiltrated government websites three months earlier, which was the first occurrence of such a breach with the technology.\n\nAdvertising\n\nInformation taken without authorization from the public-facing Medicare Statistics Reporting Service portal on June 18 has since been made public. It is not clear whether the portal breach broke any Australian laws.",
+                "score": 0.38276476
               }
             ]
           }
