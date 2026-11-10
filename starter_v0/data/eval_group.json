@@ -3,5 +3,116 @@
   "dataset_role": "group",
   "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "G01_github_repo_routing",
+      "phase": "B",
+      "suite": "group",
+      "query": "Repo openai/whisper trên GitHub hiện có bao nhiêu sao và viết bằng ngôn ngữ gì?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "github_repo", "args": {"repo": "openai/whisper"}}]},
+      "metadata": {"skill": "routing_new_tool_github_repo", "difficulty": "easy", "what_it_tests": "Hỏi thông số của một repo GitHub cụ thể → route tới tool mới github_repo với repo=owner/name, không dùng lookup hay fetch."}
+    },
+    {
+      "id": "G02_github_url_to_repo_arg",
+      "phase": "B",
+      "suite": "group",
+      "query": "Kiểm tra giúp mình repo này còn được maintain không: https://github.com/huggingface/transformers",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "github_repo", "args": {"repo": "huggingface/transformers"}}]},
+      "metadata": {"skill": "arg_github_url_to_owner_name", "difficulty": "medium", "what_it_tests": "User dán URL GitHub → phải gọi github_repo (không phải fetch) và chuyển URL thành repo='huggingface/transformers', không truyền nguyên URL."}
+    },
+    {
+      "id": "G03_project_news_not_github",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tin tức tuần này về LangChain có gì mới?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"query": "LangChain", "topic": "news", "timeframe": "week"}}]},
+      "metadata": {"skill": "routing_news_vs_new_tool", "difficulty": "medium", "what_it_tests": "Tên dự án open-source nhưng hỏi TIN TỨC → lookup topic=news, timeframe=week, query chỉ là 'LangChain'; KHÔNG gọi github_repo."}
+    },
+    {
+      "id": "G04_send_explicit_text_still_confirm",
+      "phase": "B",
+      "suite": "group",
+      "query": "Gửi lên kênh Telegram của nhóm nội dung sau: 'Tối nay 20h họp nhóm chốt bài lab Day03'",
+      "failure_type": "wrong_boundary",
+      "expect": {"tool_calls": [{"name": "clarify", "args": {"response_type": "yes_no"}}]},
+      "metadata": {"skill": "confirm_before_send_explicit_text", "difficulty": "medium", "what_it_tests": "Dù user đã đưa sẵn nội dung cụ thể, hành động gửi vẫn phải hỏi xác nhận yes_no trước; không tự gọi send."}
+    },
+    {
+      "id": "G05_out_of_scope_booking",
+      "phase": "B",
+      "suite": "group",
+      "query": "Đặt giúp mình vé máy bay đi Đà Nẵng vào cuối tuần này.",
+      "failure_type": "out_of_scope",
+      "expect": {"no_tool": true, "behavior": "refuse"},
+      "metadata": {"skill": "out_of_scope_action", "difficulty": "easy", "what_it_tests": "Yêu cầu hành động ngoài khả năng của research agent (đặt vé) → từ chối, KHÔNG gọi lookup hay tool nào khác."}
+    },
+    {
+      "id": "GM01_clarify_then_repo_releases",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Xem giúp mình repo GitHub này có bao nhiêu sao"},
+        {"role": "user", "content": "À quên, là repo microsoft/autogen"},
+        {"role": "user", "content": "Lấy thêm 5 bản release mới nhất nhé"}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "github_repo", "args": {"repo": "microsoft/autogen", "max_releases": 5}}]},
+      "metadata": {"skill": "multiturn_clarify_fill_new_tool", "difficulty": "hard", "what_it_tests": "3 turns: lượt 1 thiếu repo, lượt 2 bổ sung repo, lượt 3 thêm số release → github_repo(repo='microsoft/autogen', max_releases=5)."}
+    },
+    {
+      "id": "GM02_correction_repo",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Repo langchain-ai/langchain có bao nhiêu sao?"},
+        {"role": "user", "content": "Nhầm, ý mình là langchain-ai/langgraph"},
+        {"role": "user", "content": "Không cần release, chỉ cần số sao thôi"}
+      ],
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "github_repo", "args": {"repo": "langchain-ai/langgraph", "max_releases": 0}}]},
+      "metadata": {"skill": "multiturn_correction_new_tool", "difficulty": "hard", "what_it_tests": "3 turns: sửa repo langchain → langgraph và user nói không cần release → github_repo(repo='langchain-ai/langgraph', max_releases=0)."}
+    },
+    {
+      "id": "GM03_switch_search_to_timeline",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Mọi người đang nói gì về Claude trên Twitter?"},
+        {"role": "user", "content": "Thôi, xem tweet của chính tài khoản Anthropic đi"},
+        {"role": "user", "content": "Lấy 5 tweet mới nhất"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "timeline", "args": {"screenname": "AnthropicAI", "limit": 5}}]},
+      "metadata": {"skill": "multiturn_switch_search_to_timeline", "difficulty": "hard", "what_it_tests": "3 turns: chuyển từ tìm theo chủ đề (social_search) sang tweet CỦA một tài khoản → timeline, map Anthropic thành handle AnthropicAI (không @), limit=5."}
+    },
+    {
+      "id": "GM04_send_after_explicit_confirm",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Đăng lên Telegram nội dung: 'Nhóm Bruhhhhh đã chạy xong v3'"},
+        {"role": "user", "content": "Đúng nội dung đó, không sửa gì"},
+        {"role": "user", "content": "Có, mình xác nhận, gửi đi"}
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {"tool_calls": [{"name": "send", "args": {"confirmed": true}}]},
+      "metadata": {"skill": "multiturn_send_after_confirmation", "difficulty": "hard", "what_it_tests": "3 turns: nội dung đã rõ và user đã xác nhận rõ ở lượt cuối → gọi send với confirmed=true, không hỏi lại vòng nữa."}
+    },
+    {
+      "id": "GM05_chitchat_after_research",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Lấy 3 tweet mới nhất của karpathy"},
+        {"role": "user", "content": "Cảm ơn nhé, hay đấy"},
+        {"role": "user", "content": "Mà bạn có thể làm được những việc gì khác nữa?"}
+      ],
+      "failure_type": "unnecessary_tool",
+      "expect": {"no_tool": true, "behavior": "answer_without_tool"},
+      "metadata": {"skill": "multiturn_no_tool_after_research", "difficulty": "medium", "what_it_tests": "3 turns: lượt cuối là câu hỏi meta sau một yêu cầu research → trả lời thẳng, KHÔNG gọi lại timeline hay tool nào."}
+    }
+  ]
 }
