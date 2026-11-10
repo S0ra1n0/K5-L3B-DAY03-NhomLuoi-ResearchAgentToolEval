@@ -12,12 +12,12 @@
 
 ## Thành viên
 
-| STT | Họ tên | MSSV | Email | GitHub | Vai trò |
-| --: | ------ | ---- | ----- | ------ | ------- |
-|   1 | Nguyễn Văn Anh Trung | 2A202603903 | 26ai.trungnva@vinuni.edu.vn | `NguyenVanAnhTrung` | **Thành viên 1:** Khởi tạo baseline, chạy eval v0–v1, ghi nhận log ban đầu |
-|   2 | Hoàng Quang Đạt | 2A202603808 | 26ai.dathq@vinuni.edu.vn | `HoangQuangDat` | **Thành viên 2:** Tool mới `github_repo`, viết 5 hàm unit test (20 case), tối ưu v2–v3 |
-|   3 | Nguyễn Lê Đăng Khoa | 2A202603847 | 26ai.khoanld@vinuni.edu.vn | `S0ra1n0` | **Thành viên 3 (Trưởng nhóm):** Thiết kế 10 case eval nhóm, chạy live chat 6 lượt, quản lý merge repo |
-|   4 | Đỗ Anh Thư | 2A202603815 | 26ai.thuda@vinuni.edu.vn | `DoAnhThu832004` | **Thành viên 4:** Xây dựng Streamlit UI (C6) + deploy Cloudflare, tổng hợp báo cáo nhóm C7, TEAM.md, dọn dẹp repo |
+| STT | Họ tên | MSSV | Email | GitHub / tác giả commit (nhánh) | Vai trò |
+| --: | ------ | ---- | ----- | ------------------------------- | ------- |
+|   1 | Nguyễn Văn Anh Trung | 2A202603903 | 26ai.trungnva@vinuni.edu.vn | `FL.Trungocsdiogee` (`NguyenVanAnhTrung`) | **Thành viên 1:** Khởi tạo baseline, chạy eval v0–v1, ghi nhận log ban đầu |
+|   2 | Hoàng Quang Đạt | 2A202603808 | 26ai.dathq@vinuni.edu.vn | `Quang Dat` (`HoangQuangDat`) | **Thành viên 2:** Tool mới `github_repo`, viết 5 hàm unit test (20 case), tối ưu v2–v3 |
+|   3 | Nguyễn Lê Đăng Khoa | 2A202603847 | 26ai.khoanld@vinuni.edu.vn | `S0ra1n0` (`NguyenLeDangKhoa`) | **Thành viên 3 (Trưởng nhóm):** Thiết kế 10 case eval nhóm, chạy live chat 6 lượt, quản lý merge repo |
+|   4 | Đỗ Anh Thư | 2A202603815 | 26ai.thuda@vinuni.edu.vn | `DoAnhThu832004` (`DoAnhThu`) | **Thành viên 4:** Xây dựng Streamlit UI (C6) + deploy Cloudflare, tổng hợp báo cáo nhóm C7, TEAM.md, dọn dẹp repo |
 
 ---
 
@@ -48,7 +48,7 @@ Mỗi thành viên có một báo cáo riêng trong thư mục `report/team/`:
 
 ### Bằng chứng
 
-- File / Commit: Commit `8d52781`, `0f23405` trên nhánh `NguyenVanAnhTrung`.
+- File / Commit: Commit `8d52781` (run v0, run v1, prompt v1, `version_log.csv`) trên nhánh `NguyenVanAnhTrung`, merge vào `main` ở `0f23405`; báo cáo cá nhân ở commit `f8a737e` (đưa vào `main` bằng cherry-pick thành `fe07373`, giữ nguyên tác giả).
 - Run files: `starter_v0/runs/v0_B_base_openrouter_20261110T180724056379.json`, `starter_v0/runs/v1_B_base_openrouter_20261110T190117456928.json`.
 
 ---
@@ -65,12 +65,12 @@ Mỗi thành viên có một báo cáo riêng trong thư mục `report/team/`:
 
 - Xây dựng tool mới `github_repo` (`starter_v0/tools/github_repo/tool.py`, `TOOL.md`), kết nối API GitHub lấy stars, forks, ngôn ngữ, license, push date và releases, bọc an toàn HTTP/timeout.
 - Đăng ký `github_repo` vào `TOOL_FUNCTIONS` và khai báo schema trong `artifacts/tools.yaml`.
-- Viết 5 hàm test trong `starter_v0/tests/test_tools_todo.py` (pass 87/87 test toàn bộ suite, 0 failed).
-- Viết lại `system_prompt.md` (v2: tăng accuracy lên **0.85**) và `tools.yaml` tiếng Việt (v3: tăng accuracy lên **0.90**).
+- Viết 5 hàm test (20 test case) trong `starter_v0/tests/test_tools_todo.py`; toàn suite `pytest`: 87 passed, 14 skipped (stub của tool có sẵn), 0 failed.
+- Viết lại `system_prompt.md` (v2: tăng accuracy lên **0.85**), rồi viết lại `tools.yaml` tiếng Việt kèm chỉnh tiếp `system_prompt.md` (v3: tăng accuracy lên **0.90**).
 
 ### Bằng chứng
 
-- File / Commit: Commit `a819a6d`, `68f4401`, `cd41ec5` trên nhánh `HoangQuangDat`.
+- File / Commit: Commit `a819a6d` (tool, registry, unit test), `68f4401` (báo cáo cá nhân), `f96a68c` (prompt v2/v3, `tools.yaml` v3, run v2/v3, sửa `version_log.csv`) trên nhánh `HoangQuangDat`, merge vào `main` ở `47f1e73` và `cd41ec5`.
 - Code & test: `starter_v0/tools/github_repo/`, `starter_v0/tests/test_tools_todo.py`.
 - Run files: `starter_v0/runs/v2_B_base_openrouter_20261110T194247983178.json`, `starter_v0/runs/v3_B_base_openrouter_20261110T194947018823.json`.
 
@@ -125,4 +125,4 @@ Mỗi thành viên có một báo cáo riêng trong thư mục `report/team/`:
 ### Bằng chứng
 
 - File: `.gitattributes`, `starter_v0/app.py`, `starter_v0/requirements.txt`, `starter_v0/analysis/base_runs.csv`, `report/team/group_report.md`, `TEAM.md`, `report/team/2A202603815_DoAnhThu.md`.
-- Nhánh làm việc: `DoAnhThu`.
+- Nhánh làm việc: `DoAnhThu`; commit `3976e21` (UI + `.gitattributes`), `0de7f68` (dọn run/transcript, tạo lại analysis), `88b3fb3`, `4ac1a21`, `36686fc` (báo cáo nhóm, TEAM.md, báo cáo cá nhân), `4a477cc` (cập nhật UI); merge vào `main` ở `6a3ae8c`.
