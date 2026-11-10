@@ -164,7 +164,7 @@ Tool unit tests: Đã viết **5 hàm unit test (20 test case parametrize)** cho
 
 ### B5. Bonus Evidence
 
-*(Nhóm tập trung hoàn thiện xuất sắc 100% các yêu cầu bắt buộc và chỉn chu chất lượng sản phẩm chính).*
+*Nhóm không làm phần bonus; toàn bộ thời gian dành cho các yêu cầu bắt buộc C1–C7.*
 
 ---
 

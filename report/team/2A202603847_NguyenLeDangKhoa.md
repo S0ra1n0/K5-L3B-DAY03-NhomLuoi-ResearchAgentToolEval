@@ -4,7 +4,7 @@
 
 - Họ tên: Nguyễn Lê Đăng Khoa
 - MSSV: 2A202603847
-- Email: <!-- TODO: tự điền -->
+- Email: 26ai.khoanld@vinuni.edu.vn
 - Vai trò theo phân công nhóm: **Thành viên 3 — Group Eval (CP4) & Live Chat (CP5)**
 
 ## 2. Phần việc phụ trách
@@ -28,15 +28,21 @@
 ## 4. Bằng chứng
 
 - File/commit/PR:
-  - Nhánh cá nhân: `NguyenLeDangKhoa`; commit `2a3ccaf` (bản đầu của `eval_group.json`) <!-- TODO: thêm hash commit chứa run group + transcript sau khi push -->
+  - Nhánh cá nhân: `NguyenLeDangKhoa`; commit `2a3ccaf` (bản đầu của `eval_group.json`), `b672c8e` (bộ 10 case cuối, run group v3, transcript), merge vào `main` ở `fabccdb`
   - `starter_v0/data/eval_group.json`
   - `starter_v0/runs/v3_B_group_openrouter_20261110T202221665376.json`
   - `starter_v0/transcripts/v3_openrouter_20261110T202251172175.transcript.json`
   - Kiểm tra: `pytest` 87 passed / 14 skipped / 0 failed; `test_eval_cases_only_expect_declared_tools[eval_group.json]` PASSED.
 - AI/công cụ đã dùng và cách tự kiểm tra kết quả:
   - Công cụ: Claude Code (Claude desktop app) để đọc tài liệu lab, đề xuất contract tool mới, soạn case eval, chạy eval/chat và tổng hợp bảng B2–B4.
-  - Cách tự kiểm tra: <!-- TODO: tự viết, ví dụ: đọc lại từng case so với tools.yaml v3; kiểm tra run có provider_error_cases == 0 và measured_cases == 10; đọc từng case FAIL trong run JSON để chắc kỳ vọng hợp lý; quét transcript/run không có API key -->
+  - Cách tự kiểm tra: Đối chiếu từng case với tools.yaml v3: tên tool và tên tham số trong expect có tồn tại không. Ví dụ như github_repo có repo/max_releases, papers có sort_by=submittedDate. So với eval_base.json / eval_research_extension.json để chắc không chép case. Run group v3: summary: provider_error_cases == 0, measured_cases == 10; artifact_version khớp với trong version_log.csv; Đọc từng case FAIL (G04, G05, GM03, GM05), xem actual tool call để quyết định lỗi do model hay do case viết sai. Đọc lại 6 lượt transcript, xác nhận đủ 3 tình huống bắt buộc và không có tin nào gửi thật lên Telegram; so hash với version_log.csv sau khi chuẩn hoá LF; quét run/transcript không chứa API key, .env không bị commit.
 
 ## 5. Tự đánh giá
 
-<!-- TODO: tự viết phần này (RULES không cho dùng AI viết phần tự đánh giá) -->
+- Hoàn thành tốt các mục và công việc được phân công
+
+- Tốt: thiết kế case route tool + phát hiện lỗi CRLF, quản lý repo trên github bằng git
+
+- Chưa tốt: Chia công việc và quản lý team chỉ ở mức Khá, cần phối hợp và chủ động giao tiếp với các thành viên nhiều hơn
+
+- Tự chấm: 8/10
