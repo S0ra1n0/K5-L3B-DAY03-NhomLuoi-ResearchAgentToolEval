@@ -105,23 +105,22 @@ Mỗi thành viên có một báo cáo riêng trong thư mục `report/team/`:
 
 ### Phần việc phụ trách
 
-- Phát triển ứng dụng Web UI tương tác bằng Streamlit (`starter_v0/app.py`) đáp ứng tiêu chí C6.
-- Hướng dẫn thiết lập link dùng thử thông qua Cloudflare Tunnel cho buổi showdown.
-- Tổng hợp và hoàn thiện toàn bộ báo cáo nhóm `report/team/group_report.md` (Phần A + B) đáp ứng tiêu chí C7.
-- Xây dựng tài liệu nhóm `TEAM.md`, viết báo cáo cá nhân `report/team/2A202603815_DoAnhThu.md`.
-- Dọn dẹp repository: loại bỏ các file run thừa/không ghi nhận, transcript không đạt, cập nhật lại phân tích `analysis/base_runs.csv`.
+- Xây dựng giao diện Streamlit Web UI (`starter_v0/app.py`) phục vụ chat nhiều lượt và demo (C6).
+- Hướng dẫn thiết lập Cloudflare Tunnel mở link dùng thử cho buổi showdown.
+- Tổng hợp nội dung báo cáo nhóm `report/team/group_report.md` (Phần A + B) từ các thành viên (C7).
+- Viết tài liệu `TEAM.md` và báo cáo cá nhân `report/team/2A202603815_DoAnhThu.md`.
+- Dọn dẹp repo: xóa các run thừa không có log, transcript lỗi, cập nhật lại `analysis/base_runs.csv`.
 
 ### Đóng góp cụ thể
 
-- Xây dựng Web UI Streamlit đa lượt hoàn chỉnh:
-  - Tái sử dụng `run_model_tool_loop` và logic từ `chat.py`.
-  - Hiển thị đầy đủ mọi tool call (`name`, `args`) và kết quả/lỗi chi tiết dưới dạng JSON expander, không che giấu lỗi.
-  - Tạm dừng và hiển thị thông báo chờ người dùng khi agent gọi `clarify` (`waiting_for_user`).
-  - Hiển thị nổi bật `artifact_version` (`v3+p5dd5a04cdce4+t6c5c91c5db73`) ở sidebar để minh chứng chạy đúng bản v3.
-  - Tích hợp sẵn 5 câu hỏi mẫu A3 vào sidebar để người chấm và các nhóm khác có thể test nhanh bằng 1 click.
-- Thiết lập cấu hình `.gitattributes` ép kiểu `eol=lf` cho các file artifact trên Windows, giải quyết dứt điểm lỗi lệch mã băm hash.
-- Hoàn thiện toàn bộ báo cáo nhóm `group_report.md` với đầy đủ thông tin Phần A, Phần B, các bảng số liệu thực tế B1–B4, B5a và phần phân tích cải tiến B6.
-- Dọn dẹp repo sạch sẽ: `git rm` 3 run không ghi log và 1 transcript chào hỏi không đạt tiêu chí; chạy lại `scripts/parse_runs.py` sinh 90 dòng dữ liệu phân tích chuẩn xác.
+- Code giao diện Streamlit UI (`starter_v0/app.py`):
+  - Tái sử dụng trực tiếp hàm `run_model_tool_loop` từ `chat.py`, giữ nguyên vẹn luồng gọi model.
+  - Bọc mỗi tool call trong expander hiển thị rõ tên tool, arguments và kết quả JSON; highlight khung đỏ nếu tool trả về lỗi (không giấu lỗi tool).
+  - Bắt trạng thái `waiting_for_user` khi agent gọi `clarify` để hiện thông báo chờ người dùng.
+  - Hiện mã băm `artifact_version` (`v3+p5dd5a04cdce4+t6c5c91c5db73`) ở sidebar và thêm sẵn 5 nút câu hỏi mẫu A3.
+- Tạo file `.gitattributes` ép kiểu `eol=lf` cho các file trong `artifacts/` trên Windows, tránh lệch mã hash SHA-256.
+- Tổng hợp toàn bộ số liệu vào `group_report.md`: hoàn thiện Phần A, các bảng B1–B4, B5a, 5 khó khăn kỹ thuật và mục Reflection B6.
+- Dọn repo: `git rm` 3 file run thừa và 1 transcript chào hỏi không có tool; chạy lại `scripts/parse_runs.py` cập nhật file phân tích 90 dòng.
 
 ### Bằng chứng
 
