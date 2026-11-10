@@ -123,3 +123,24 @@ tools:
         max_pages: {type: integer, default: 5, description: "Số trang"}
         max_chars: {type: integer, default: 8000, description: "Số ký tự"}
       required: [arxiv_url]
+
+  - name: github_repo
+    description: >-
+      Lấy thông tin chi tiết của một GitHub repository cụ thể (stars, forks, ngôn ngữ,
+      license, lần push gần nhất, và các release mới nhất).
+      Dùng khi người dùng hỏi về một repo GitHub cụ thể.
+      Không dùng cho tin tức (dùng lookup), tweet (dùng social_search), đọc nội dung trang web
+      (dùng fetch), hoặc paper khoa học (dùng papers). Nếu chưa rõ repo nào thì gọi clarify trước.
+    parameters:
+      type: object
+      properties:
+        repo:
+          type: string
+          default: ""
+          description: "Định dạng bắt buộc 'owner/name' (vd 'openai/whisper'); không URL, không '@', không '.git'."
+        max_releases:
+          type: integer
+          default: 3
+          description: "Số release mới nhất cần lấy (giới hạn 0–10; 0 = không lấy release)."
+      required: [repo]
+
