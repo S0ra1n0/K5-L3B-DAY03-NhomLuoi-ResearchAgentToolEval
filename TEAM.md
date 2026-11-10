@@ -8,7 +8,7 @@
 - URL repo, nhánh nộp, commit chốt:
   - URL repo: `https://github.com/S0ra1n0/K5-L3B-DAY03-NhomLuoi-ResearchAgentToolEval`
   - Nhánh nộp: `main` (trưởng nhóm merge từ các nhánh thành viên)
-  - Commit chốt:
+  - Commit chốt: 4c16be5
 
 ## Thành viên
 
