@@ -11,6 +11,7 @@ Rules:
 from __future__ import annotations
 
 import pytest
+import requests
 
 from conftest import FakeResponse  # noqa: F401  (you will need it)
 from tools import TOOL_FUNCTIONS  # noqa: F401
@@ -104,19 +105,134 @@ def test_policy_instruction_like_lines_go_to_untrusted_text() -> None:
     pytest.skip(TODO)
 
 
-# ---------------- YOUR NEW TOOL(S) ----------------
-# Write at least 3 tests per tool your team adds:
-#   1. happy path (mocked if it calls an API)
-#   2. bad / missing input from the model (empty string, wrong type, out-of-enum value)
-#   3. failure path (missing key, HTTP error, timeout) -> returns error dict, does not raise
+# ---------------- YOUR NEW TOOL(S): github_repo ----------------
 
-def test_my_new_tool_happy_path() -> None:
-    pytest.skip(TODO)
+def test_github_repo_zero_releases_fetches_repo_only_and_maps_fields(monkeypatch, fake_http) -> None:
+    monkeypatch.delenv("GITHUB_TOKEN", raising=False)
+    calls = fake_http(FakeResponse({
+        "full_name": "openai/whisper",
+        "html_url": "https://github.com/openai/whisper",
+        "description": "Robust Speech Recognition",
+        "stargazers_count": 75000,
+        "forks_count": 9000,
+        "language": "Python",
+        "license": {"spdx_id": "MIT", "name": "MIT License"},
+        "pushed_at": "2026-11-01T10:00:00Z",
+    }))
+
+    result = TOOL_FUNCTIONS["github_repo"](repo="openai/whisper", max_releases=0)
+
+    assert len(calls) == 1
+    assert calls[0]["method"] == "GET"
+    assert calls[0]["url"] == "https://api.github.com/repos/openai/whisper"
+    assert calls[0]["headers"]["Accept"] == "application/vnd.github+json"
+    assert "Authorization" not in calls[0]["headers"]
+    assert result["tool"] == "github_repo"
+    assert result["repo"] == "openai/whisper"
+    assert result["stars"] == 75000
+    assert result["forks"] == 9000
+    assert result["language"] == "Python"
+    assert result["license"] == "MIT"
+    assert result["pushed_at"] == "2026-11-01T10:00:00Z"
+    assert result["releases"] == []
+    assert result["items"][0]["source"] == "github.com"
 
 
-def test_my_new_tool_bad_input_from_model() -> None:
-    pytest.skip(TODO)
+def test_github_repo_with_max_releases_fetches_releases_and_handles_null_license(monkeypatch) -> None:
+    monkeypatch.setenv("GITHUB_TOKEN", "ghp_test_token")
+    calls: list[dict] = []
+
+    def fake_get(url: str, **kwargs):
+        calls.append({"url": url, **kwargs})
+        if url.endswith("/releases"):
+            return FakeResponse([
+                {
+                    "tag_name": "v20240930",
+                    "name": "v20240930",
+                    "published_at": "2024-09-30T00:00:00Z",
+                    "html_url": "https://github.com/openai/whisper/releases/tag/v20240930",
+                    "prerelease": False,
+                },
+                {
+                    "tag_name": "v20231117",
+                    "name": "v20231117",
+                    "published_at": "2023-11-17T00:00:00Z",
+                    "html_url": "https://github.com/openai/whisper/releases/tag/v20231117",
+                    "prerelease": False,
+                },
+            ])
+        return FakeResponse({
+            "full_name": "openai/whisper",
+            "html_url": "https://github.com/openai/whisper",
+            "description": None,
+            "stargazers_count": 100,
+            "forks_count": 20,
+            "language": "Python",
+            "license": None,
+            "pushed_at": "2026-11-02T12:00:00Z",
+        })
+
+    monkeypatch.setattr(requests, "get", fake_get)
+
+    result = TOOL_FUNCTIONS["github_repo"](repo="openai/whisper", max_releases=2)
+
+    assert len(calls) == 2
+    assert calls[0]["url"] == "https://api.github.com/repos/openai/whisper"
+    assert calls[0]["headers"]["Authorization"] == "Bearer ghp_test_token"
+    assert calls[1]["url"] == "https://api.github.com/repos/openai/whisper/releases"
+    assert calls[1]["params"] == {"per_page": 2}
+    assert result["license"] is None
+    assert len(result["releases"]) == 2
+    assert result["releases"][0]["tag_name"] == "v20240930"
+    assert "Latest release: v20240930" in result["items"][0]["summary"]
 
 
-def test_my_new_tool_failure_returns_error_dict() -> None:
-    pytest.skip(TODO)
+@pytest.mark.parametrize(
+    "bad_repo",
+    [
+        "",
+        "   ",
+        "https://github.com/openai/whisper",
+        "github.com/openai/whisper",
+        "@openai/whisper",
+        "openai/whisper.git",
+        "openai",
+        "a/b/c",
+        123,
+    ],
+)
+def test_github_repo_rejects_invalid_repo_without_network_call(fake_http, bad_repo) -> None:
+    calls = fake_http(FakeResponse({}))
+    result = TOOL_FUNCTIONS["github_repo"](repo=bad_repo, max_releases=3)
+
+    assert result["tool"] == "github_repo"
+    assert result["error"] == "ValueError"
+    assert calls == []
+
+
+@pytest.mark.parametrize("bad_limit", [-1, 11, "3", True, None, 1.5])
+def test_github_repo_rejects_invalid_max_releases_without_network_call(fake_http, bad_limit) -> None:
+    calls = fake_http(FakeResponse({}))
+    result = TOOL_FUNCTIONS["github_repo"](repo="openai/whisper", max_releases=bad_limit)
+
+    assert result["tool"] == "github_repo"
+    assert result["error"] == "ValueError"
+    assert calls == []
+
+
+@pytest.mark.parametrize(
+    ("mock_outcome", "expected_error"),
+    [
+        (FakeResponse(status_code=404), "HTTPError"),
+        (FakeResponse(status_code=403), "HTTPError"),
+        (requests.Timeout("request timed out"), "Timeout"),
+    ],
+)
+def test_github_repo_http_error_or_timeout_returns_error_dict(fake_http, mock_outcome, expected_error) -> None:
+    fake_http(mock_outcome)
+    result = TOOL_FUNCTIONS["github_repo"](repo="openai/whisper", max_releases=0)
+
+    assert result["tool"] == "github_repo"
+    assert result["error"] == expected_error
+    assert result["message"]
+
