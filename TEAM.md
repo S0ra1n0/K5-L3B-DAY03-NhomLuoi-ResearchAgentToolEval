@@ -106,7 +106,7 @@ Mỗi thành viên có một báo cáo riêng trong thư mục `report/team/`:
 ### Phần việc phụ trách
 
 - Xây dựng giao diện Streamlit Web UI (`starter_v0/app.py`) phục vụ chat nhiều lượt và demo (C6).
-- Hướng dẫn thiết lập Cloudflare Tunnel mở link dùng thử cho buổi showdown.
+- Thiết lập Cloudflare Tunnel mở link dùng thử (`https://flashing-treat-cars-prospective.trycloudflare.com`) cho buổi showdown.
 - Tổng hợp nội dung báo cáo nhóm `report/team/group_report.md` (Phần A + B) từ các thành viên (C7).
 - Viết tài liệu `TEAM.md` và báo cáo cá nhân `report/team/2A202603815_DoAnhThu.md`.
 - Dọn dẹp repo: xóa các run thừa không có log, transcript lỗi, cập nhật lại `analysis/base_runs.csv`.
