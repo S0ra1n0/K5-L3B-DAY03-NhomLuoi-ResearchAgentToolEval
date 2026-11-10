@@ -35,7 +35,7 @@ AI Research Agent hỗ trợ nghiên cứu đa nguồn: tra cứu tin tức Web 
   ```powershell
   cloudflared tunnel --url http://localhost:8501
   ```
-- URL: `https://flashing-treat-cars-prospective.trycloudflare.com`
+- URL: `https://flashing-treat-cars-prospective.trycloudflare.com` *(link tạm của Cloudflare Quick Tunnel, chỉ hoạt động khi máy chạy UI và lệnh `cloudflared` đang bật — đã dùng cho buổi showdown; nếu link không mở được, chạy lại UI bằng lệnh ở trên)*
 
 ### A2. Tool agent có
 
@@ -70,7 +70,9 @@ Agent hiện có đủ **11 tools**:
 - **Thay đổi trong `starter_v0/artifacts/system_prompt.md`:**
   - *Vòng v1:* Bỏ các từ gây hấp tấp như `"fast, proactive"` để model cẩn trọng hơn.
   - *Vòng v2:* Viết lại toàn bộ bằng tiếng Anh chuẩn mực: xóa bỏ 3 chỉ dẫn phản tác dụng của bản starter (ép gọi tool trong 1 bước, tự đoán handle/URL, tự gửi `send`), bổ sung quy tắc phạm vi (`no_tool` khi câu hỏi ngoài phạm vi như giải toán, viết code), bắt buộc gọi `clarify` khi thiếu dữ liệu, thiết lập ranh giới an toàn cho `send` (phải xác nhận), bổ sung routing cho tool mới `github_repo`, và định nghĩa trust boundary đối với dữ liệu từ tool.
+  - *Vòng v3:* `system_prompt.md` cũng được chỉnh tiếp cùng lúc với `tools.yaml` (`prompt_hash` đổi `3264a46e7b62` → `5dd5a04cdce4`, xem `version_log.csv`). Bản prompt v2 không được commit riêng nên repo chỉ còn bản v3 cuối cùng; nội dung v3 nằm ở commit `f96a68c`.
 - **Thay đổi trong `starter_v0/artifacts/tools.yaml`:**
+  - *Vòng v2:* chỉ thêm declaration của tool mới `github_repo` (commit `a819a6d`), không sửa description các tool cũ — đây là lý do `tools_hash` đổi giữa v1 và v2.
   - *Vòng v3:* Viết lại description và convention tham số tiếng Việt chi tiết cho cả 11 tool: quy định rõ khi nào nên dùng và không nên dùng, phân biệt rạch ròi giữa `lookup` (web) và `social_search` (tweet), quy ước `query` không lặp từ khóa như `"news"`, quy ước `topic="news"` khi tìm tin tức, chuẩn hóa handle không có tiền tố `@`, và ràng buộc `send` chỉ gửi khi có `confirmed=true`.
 
 **Tool mới nhóm viết:**
@@ -94,11 +96,14 @@ Dữ liệu ghi nhận từ `starter_v0/artifacts/version_log.csv` và các file
 | v2 | `system_prompt.md` | Loại bỏ chỉ dẫn tự đoán/tự gửi/ép 1 bước và thêm rule rõ ràng giúp agent dừng đoán bừa (R10, R11), không lạm dụng send cho out-of-scope (R08) và biết gọi clarify trước khi gửi | 0.70 | **0.85** (17/20) | `runs/v2_B_base_openrouter_20261110T194247983178.json` |
 | v3 | `tools.yaml` + `system_prompt.md` | Làm rõ ranh giới lookup vs social_search và quy ước query/topic/timeframe giúp sửa lỗi argument ở R13 và routing multi-turn ở M02 | 0.85 | **0.90** (18/20, multiturn 1.00) | `runs/v3_B_base_openrouter_20261110T194947018823.json` |
 
-*Ghi chú trung thực về quá trình lặp:*
-- `v1` sửa nhỏ nên điểm không đổi (0.70), chứng minh cần can thiệp hệ thống sâu hơn vào prompt;
-- `v3` chỉnh sửa đồng bộ cả 2 file `system_prompt.md` và `tools.yaml`;
-- `tools_hash` thay đổi giữa v1 và v2 (`e69bc53ed884` → `fef6d9598408`) do đã merge tool mới `github_repo` vào registry và schema;
-- `v0` cùng mã hash từng có lần chạy đạt 0.65 và lần đạt 0.70 trên OpenRouter do tính dao động tự nhiên của model.
+*Ghi chú trung thực về quá trình lặp (đối chiếu từng case giữa các run):*
+- `v1` giữ nguyên 0.70 nhưng **tập case FAIL thay đổi**: `R14_out_of_scope_coding` chuyển sang PASS, còn `R03_web_news_routing` chuyển sang FAIL (gọi `lookup(query="AI news")`, expected `query="AI"`). Chỉ bỏ "fast, proactive" không gỡ được 3 chỉ dẫn xấu nên `R08`, `R10`, `R11`, `R12`, `R13` vẫn FAIL → cần sửa sâu hơn ở v2.
+- `v2` sửa được `R03`, `R08`, `R10`, `R11` nhưng **làm tụt `M02_carryover_timeframe`** (gọi `social_search` thay vì `lookup`), nên `multiturn_accuracy` giảm 1.00 → 0.83; còn FAIL `R12`, `R13`.
+- `v3` sửa được `R13` và `M02` (multiturn quay lại 1.00) nhưng **làm tụt `R10_missing_handle`** (v2 PASS, v3 gọi `social_search(query="tweet")` thay vì `clarify`). Tổng vẫn tăng 0.85 → 0.90 vì sửa 2 case, tụt 1 case.
+- `v3` chỉnh sửa đồng bộ cả 2 file `system_prompt.md` và `tools.yaml`; bản `system_prompt.md` của v2 (`3264a46e7b62`) không được commit riêng.
+- `tools_hash` thay đổi giữa v1 và v2 (`e69bc53ed884` → `fef6d9598408`) do đã merge tool mới `github_repo` vào registry và schema (commit `a819a6d`).
+- Hash v0–v2 được tính khi checkout Windows (`core.autocrlf=true`, line ending CRLF): `eb1c8179815b`/`e69bc53ed884` ứng với `system_prompt.md`/`tools.yaml` của starter (commit `c68da4c`), `befdb850fe28` ứng với prompt v1 (commit `8d52781`), `fef6d9598408` ứng với `tools.yaml` có `github_repo` (commit `a819a6d`). Từ v3 nhóm chuẩn hoá LF (xem mục 5).
+- Với cùng hash v0, nhóm chạy 3 run hợp lệ: 2 run đạt 0.65 (`v0_B_base_openrouter_20261110T174148296323.json`, `v0_B_base_openrouter_20261110T183114783027.json`) và 1 run đạt 0.70 (run chính thức ở trên) — dao động tự nhiên của model. 2 run 0.65 đã dọn khỏi `runs/` nhưng vẫn còn trong lịch sử git tại commit `fabccdb`.
 
 ### B2. Failure Analysis (v0)
 
@@ -173,6 +178,7 @@ Tool unit tests: Đã viết **5 hàm unit test (20 test case parametrize)** cho
 1. **GitHub API rate limit (HTTP 403) khi test tool mới `github_repo`:**
    - Khi chạy live kiểm thử tool `github_repo` trên Wi-Fi lớp học dùng chung IP, GitHub API trả về lỗi `HTTPError 403 rate limit exceeded` (do giới hạn 60 request/giờ cho IP ẩn danh).
    - *Cách xử lý:* Bọc an toàn lỗi HTTP trả về dict dạng `{'tool': 'github_repo', 'error': 'HTTPError', ...}` thay vì để exception làm sập agent; hỗ trợ thêm biến `GITHUB_TOKEN` trong file `.env` khi chạy live; và viết 100% unit test offline qua `monkeypatch`/`fake_http` để không phụ thuộc mạng thật.
+   - *Bằng chứng:* kết quả smoke test live ghi ở mục 4 báo cáo `report/team/2A202603808_HoangQuangDat.md`; nhánh lỗi được kiểm bằng `test_github_repo_http_error_or_timeout_returns_error_dict` trong `starter_v0/tests/test_tools_todo.py`.
 2. **Lỗi lệch hash artifact do line ending trên Windows:**
    - Trên môi trường Windows với cấu hình git mặc định (`core.autocrlf=true`), các file `system_prompt.md` và `tools.yaml` bị checkout thành ký tự xuống dòng CRLF (`\r\n`), dẫn đến giá trị băm `prompt_hash` và `tools_hash` bị sai lệch hoàn toàn so với hash chuẩn của v3 dù nội dung giống hệt.
    - *Cách xử lý:* Thêm file `.gitattributes` ở thư mục gốc repo ép buộc `text eol=lf` cho toàn bộ thư mục `starter_v0/artifacts/`, sau đó checkout lại file để chuẩn hóa đúng mã hash `v3+p5dd5a04cdce4+t6c5c91c5db73`.
@@ -180,8 +186,9 @@ Tool unit tests: Đã viết **5 hàm unit test (20 test case parametrize)** cho
    - Trong quá trình eval nhóm ở case G05, lệnh gọi `papers` tới `export.arxiv.org` bị `ReadTimeout`. Nhờ cơ chế bọc lỗi `err()` trong starter nên eval vẫn hoàn thành và đo lường thành công tham số của model mà không bị crash luồng đánh giá.
 4. **Hỏng định dạng file `version_log.csv` khi chỉnh sửa bằng Excel:**
    - Khi mở và lưu bằng Microsoft Excel, file CSV bị bọc thừa dấu ngoặc kép `"""` và tạo ra 13 dòng trống ở cuối làm gãy script parse log. Nhóm đã kịp thời kiểm tra bằng `git diff` và viết lại chuẩn định dạng RFC 4180 bằng text editor.
+   - *Bằng chứng:* bản lỗi ở commit `8d52781` (16 dòng, 13 dòng trống), bản đã sửa ở commit `f96a68c` (header + 4 dòng v0–v3).
 5. **Độ dao động tự nhiên của mô hình:**
-   - Cùng một prompt và hash ở bản v0 nhưng khi gọi qua API OpenRouter có lần đạt 0.65 và lần đạt 0.70. Nhóm đã thống nhất chỉ ghi nhận những lần chạy đầy đủ không có lỗi provider (`provider_error_cases == 0`) và lưu trữ run JSON minh chứng rõ ràng.
+   - Cùng một prompt và hash ở bản v0 nhưng khi gọi qua API OpenRouter có 2 run đạt 0.65 và 1 run đạt 0.70 (chi tiết và tên file ở ghi chú B1). Nhóm đã thống nhất chỉ ghi nhận những lần chạy đầy đủ không có lỗi provider (`provider_error_cases == 0`) và lưu trữ run JSON minh chứng rõ ràng; các run dư được dọn khỏi `runs/` nhưng vẫn truy lại được trong lịch sử git (commit `fabccdb`).
 
 ---
 
@@ -203,13 +210,15 @@ Chi tiết đóng góp của từng thành viên nằm trong [TEAM.md](../../TEA
   - Phân định rõ ràng ranh giới giữa `lookup` (tìm bài viết, tin tức trên Web) và `social_search` (tìm bài đăng ngắn trên mạng xã hội Twitter).
   - Quy ước chuẩn hóa tham số: `query` của `lookup` chỉ chứa thực thể/chủ đề chính (không lặp lại chữ "news", "tin tức"), muốn lọc tin tức thì truyền `topic="news"`; tham số `screenname` của Twitter không được chứa ký tự `@`; tham số `confirmed=true` của `send` chỉ bật khi user đồng ý.
 - **Failure nào cần review thủ công thay vì chấm tự động?**
-  - Case `R12` (xác nhận trước khi gửi) và `GM04`: Trong thực tế live chat, agent hiện bản nháp và hỏi trực tiếp user bằng text thông thường thay vì gọi tool `clarify(response_type="yes_no")`. Về mặt trải nghiệm và an toàn, đây là hành vi hoàn toàn đúng đắn nhưng regex/test tự động lại chấm FAIL do không phát hiện đúng tool call `clarify`.
+  - Case `R12` (xác nhận trước khi gửi): ở v3 agent đã dừng lại và gọi `clarify` thay vì tự `send` (đúng về an toàn), nhưng đặt `response_type="text"` thay vì `"yes_no"` nên bị chấm FAIL — cần người xem lại để phân biệt "sai ranh giới" với "sai kiểu câu hỏi".
+  - Live chat (`transcripts/v3_openrouter_20261110T202251172175.transcript.json`, lượt 2 và 5): không bị ép gọi tool nên agent hỏi lại link / hỏi xác nhận bằng text thường thay vì gọi `clarify`. Hành vi an toàn đúng nhưng nếu chấm tự động theo tool call thì sẽ không ghi nhận được — loại này cần review thủ công.
   - Case `GM03`: User yêu cầu tìm tweet của "Anthropic", model gọi `timeline(screenname="Anthropic")` thay vì `AnthropicAI`. Về mặt ngữ nghĩa, model đã routing đúng tool nhưng không biết handle thực tế của công ty trên nền tảng mạng xã hội.
 - **Nếu có thêm một vòng, nhóm sẽ thử giả thuyết nào?**
   - *Giả thuyết 1 (Sửa G04 - `policy`):* Bổ sung tài liệu đặc tả các giá trị enum của `policy_area` trong `tools.yaml` (nêu rõ `tool_usage` chứa quy định về rate limit, chọn tool và quyền gọi API).
   - *Giả thuyết 2 (Sửa G05 - `papers`):* Bổ sung quy ước trong mô tả tool `papers`: khi user yêu cầu "mới nhất" thì mặc định gán `sort_by="submittedDate"`.
   - *Giả thuyết 3 (Sửa GM03 - `timeline`):* Bổ sung hướng dẫn trong `system_prompt.md`: khi không chắc chắn 100% handle Twitter chính thức của một tổ chức, agent phải gọi `clarify` để xác nhận handle thay vì đoán mò.
   - *Giả thuyết 4 (Sửa GM05 - out of scope):* Mở rộng danh mục các câu hỏi ngoài phạm vi trong system prompt (bao gồm đặt vé máy bay, thương mại điện tử, dịch vụ cá nhân) để agent từ chối ngay cả trong ngữ cảnh multi-turn kéo dài.
+  - *Giả thuyết 5 (Sửa R10 bị tụt ở v3 - `social_search`):* Với câu "Tóm tắt 5 tweet mới nhất giúp mình", model v3 gọi `social_search(query="tweet")` — mô tả mới chỉ cấm `query` rỗng nên model điền chữ chung chung "tweet". Thử ghi rõ trong `tools.yaml`: `query` phải là chủ đề lấy từ câu của user, không dùng từ chung như "tweet"/"bài đăng"; nếu user không nêu cả tài khoản lẫn chủ đề thì gọi `clarify`.
 
 ---
 
