@@ -3,5 +3,116 @@
   "dataset_role": "group",
   "description": "Case do NHÓM tự viết thêm để cover thêm trường hợp. Mỗi case cần: id, phase='B', query HOẶC turns, failure_type (thuộc allowed_failure_types), và expect (tool_calls[...] hoặc no_tool=true). Nên kèm metadata.what_it_tests.",
   "allowed_failure_types": ["wrong_tool", "wrong_arg_value", "wrong_boundary", "unnecessary_tool", "out_of_scope", "missing_info"],
-  "cases": []
+  "cases": [
+    {
+      "id": "G01_github_repo_routing",
+      "phase": "B",
+      "suite": "group",
+      "query": "Repo openai/whisper trên GitHub hiện có bao nhiêu sao và viết bằng ngôn ngữ gì?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "github_repo", "args": {"repo": "openai/whisper"}}]},
+      "metadata": {"skill": "routing_new_tool_github_repo", "difficulty": "easy", "what_it_tests": "Hỏi thông số của một repo GitHub cụ thể → route tới tool mới github_repo với repo=owner/name, không dùng lookup hay fetch."}
+    },
+    {
+      "id": "G02_github_url_to_repo_arg",
+      "phase": "B",
+      "suite": "group",
+      "query": "Kiểm tra giúp mình repo này còn được maintain không: https://github.com/huggingface/transformers",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "github_repo", "args": {"repo": "huggingface/transformers"}}]},
+      "metadata": {"skill": "arg_github_url_to_owner_name", "difficulty": "medium", "what_it_tests": "User dán URL GitHub → phải gọi github_repo (không phải fetch) và chuyển URL thành repo='huggingface/transformers', không truyền nguyên URL."}
+    },
+    {
+      "id": "G03_project_news_not_github",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tin tức tuần này về LangChain có gì mới?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "lookup", "args": {"query": "LangChain", "topic": "news", "timeframe": "week"}}]},
+      "metadata": {"skill": "routing_news_vs_new_tool", "difficulty": "medium", "what_it_tests": "Tên dự án open-source nhưng hỏi TIN TỨC → lookup topic=news, timeframe=week, query chỉ là 'LangChain'; KHÔNG gọi github_repo."}
+    },
+    {
+      "id": "G04_policy_tool_usage_area",
+      "phase": "B",
+      "suite": "group",
+      "query": "Theo quy định nội bộ của công ty, khi gọi API arXiv thì các request phải cách nhau tối thiểu bao lâu?",
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "policy", "args": {"policy_area": "tool_usage"}}]},
+      "metadata": {"skill": "routing_policy_tool_usage", "difficulty": "medium", "what_it_tests": "Hỏi quy định nội bộ về giới hạn gọi tool (rate limit arXiv) → policy với policy_area='tool_usage'; KHÔNG gọi papers hay lookup dù câu hỏi nhắc tới arXiv."}
+    },
+    {
+      "id": "G05_papers_latest_args",
+      "phase": "B",
+      "suite": "group",
+      "query": "Tìm 3 paper mới nhất trên arXiv về speculative decoding.",
+      "failure_type": "wrong_arg_value",
+      "expect": {"tool_calls": [{"name": "papers", "args": {"max_results": 3, "sort_by": "submittedDate"}}]},
+      "metadata": {"skill": "arg_papers_latest", "difficulty": "medium", "what_it_tests": "'3 paper mới nhất' → papers với max_results=3 và sort_by='submittedDate' (không để mặc định relevance)."}
+    },
+    {
+      "id": "GM01_clarify_then_repo_releases",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Xem giúp mình repo GitHub này có bao nhiêu sao"},
+        {"role": "user", "content": "À quên, là repo microsoft/autogen"},
+        {"role": "user", "content": "Lấy thêm 5 bản release mới nhất nhé"}
+      ],
+      "failure_type": "missing_info",
+      "expect": {"tool_calls": [{"name": "github_repo", "args": {"repo": "microsoft/autogen", "max_releases": 5}}]},
+      "metadata": {"skill": "multiturn_clarify_fill_new_tool", "difficulty": "hard", "what_it_tests": "3 turns: lượt 1 thiếu repo, lượt 2 bổ sung repo, lượt 3 thêm số release → github_repo(repo='microsoft/autogen', max_releases=5)."}
+    },
+    {
+      "id": "GM02_search_then_read_paper",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tìm giúp mình paper gốc về Retrieval-Augmented Generation trên arXiv"},
+        {"role": "user", "content": "Đúng rồi, bài có arXiv ID 2005.11401 đó"},
+        {"role": "user", "content": "Đọc giúp mình 3 trang đầu của bài đó thôi"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "paper_text", "args": {"arxiv_url": "2005.11401", "max_pages": 3}}]},
+      "metadata": {"skill": "multiturn_search_to_read_paper", "difficulty": "hard", "what_it_tests": "3 turns: từ tìm paper (papers) chuyển sang đọc nội dung khi đã có arXiv ID → paper_text(arxiv_url='2005.11401', max_pages=3); không gọi lại papers hay fetch."}
+    },
+    {
+      "id": "GM03_switch_search_to_timeline",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Mọi người đang nói gì về Claude trên Twitter?"},
+        {"role": "user", "content": "Thôi, xem tweet của chính tài khoản Anthropic đi"},
+        {"role": "user", "content": "Lấy 5 tweet mới nhất"}
+      ],
+      "failure_type": "wrong_tool",
+      "expect": {"tool_calls": [{"name": "timeline", "args": {"screenname": "AnthropicAI", "limit": 5}}]},
+      "metadata": {"skill": "multiturn_switch_search_to_timeline", "difficulty": "hard", "what_it_tests": "3 turns: chuyển từ tìm theo chủ đề (social_search) sang tweet CỦA một tài khoản → timeline, map Anthropic thành handle AnthropicAI (không @), limit=5."}
+    },
+    {
+      "id": "GM04_send_after_explicit_confirm",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Đăng lên Telegram nội dung: 'Nhóm Bruhhhhh đã chạy xong v3'"},
+        {"role": "user", "content": "Đúng nội dung đó, không sửa gì"},
+        {"role": "user", "content": "Có, mình xác nhận, gửi đi"}
+      ],
+      "failure_type": "wrong_boundary",
+      "expect": {"tool_calls": [{"name": "send", "args": {"confirmed": true}}]},
+      "metadata": {"skill": "multiturn_send_after_confirmation", "difficulty": "hard", "what_it_tests": "3 turns: nội dung đã rõ và user đã xác nhận rõ ở lượt cuối → gọi send với confirmed=true, không hỏi lại vòng nữa."}
+    },
+    {
+      "id": "GM05_out_of_scope_after_research",
+      "phase": "B",
+      "suite": "group",
+      "turns": [
+        {"role": "user", "content": "Tin AI hôm nay có gì nổi bật?"},
+        {"role": "user", "content": "Ok cảm ơn, tóm tắt hay đấy"},
+        {"role": "user", "content": "Giờ đặt giúp mình vé máy bay đi Đà Nẵng vào cuối tuần này nhé"}
+      ],
+      "failure_type": "out_of_scope",
+      "expect": {"no_tool": true, "behavior": "refuse"},
+      "metadata": {"skill": "multiturn_out_of_scope_action", "difficulty": "medium", "what_it_tests": "3 turns: sau một yêu cầu research hợp lệ, lượt cuối xin đặt vé máy bay (hành động ngoài khả năng) → từ chối, KHÔNG gọi lookup/clarify/send hay tool nào."}
+    }
+  ]
 }
