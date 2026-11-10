@@ -6,18 +6,18 @@
 - Lớp: **L3B**
 - Repo nhóm: `K5-L3B-DAY03-NhomLuoi-ResearchAgentToolEval` (hoặc `K5-L3B-DAY03-NguyenLeDangKhoa-2A202603847-PromptEngineeringToolCalling`)
 - URL repo, nhánh nộp, commit chốt:
-  - URL repo: `https://github.com/S0ra1n0/K5-L3B-DAY03-NguyenLeDangKhoa-2A202603847-PromptEngineeringToolCalling`
+  - URL repo: `https://github.com/S0ra1n0/K5-L3B-DAY03-NhomLuoi-ResearchAgentToolEval`
   - Nhánh nộp: `main` (trưởng nhóm merge từ các nhánh thành viên)
-  - Commit chốt: <!-- Trưởng nhóm điền sau khi merge final -->
+  - Commit chốt:
 
 ## Thành viên
 
-| STT | Họ tên | MSSV | Email | GitHub / tác giả commit (nhánh) | Vai trò |
-| --: | ------ | ---- | ----- | ------------------------------- | ------- |
-|   1 | Nguyễn Văn Anh Trung | 2A202603903 | 26ai.trungnva@vinuni.edu.vn | `FL.Trungocsdiogee` (`NguyenVanAnhTrung`) | **Thành viên 1:** Khởi tạo baseline, chạy eval v0–v1, ghi nhận log ban đầu |
-|   2 | Hoàng Quang Đạt | 2A202603808 | 26ai.dathq@vinuni.edu.vn | `Quang Dat` (`HoangQuangDat`) | **Thành viên 2:** Tool mới `github_repo`, viết 5 hàm unit test (20 case), tối ưu v2–v3 |
-|   3 | Nguyễn Lê Đăng Khoa | 2A202603847 | 26ai.khoanld@vinuni.edu.vn | `S0ra1n0` (`NguyenLeDangKhoa`) | **Thành viên 3 (Trưởng nhóm):** Thiết kế 10 case eval nhóm, chạy live chat 6 lượt, quản lý merge repo |
-|   4 | Đỗ Anh Thư | 2A202603815 | 26ai.thuda@vinuni.edu.vn | `DoAnhThu832004` (`DoAnhThu`) | **Thành viên 4:** Xây dựng Streamlit UI (C6) + deploy Cloudflare, tổng hợp báo cáo nhóm C7, TEAM.md, dọn dẹp repo |
+| STT | Họ tên               | MSSV        | Email                       | GitHub / tác giả commit (nhánh)           | Vai trò                                                                                                           |
+| --: | -------------------- | ----------- | --------------------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+|   1 | Nguyễn Văn Anh Trung | 2A202603903 | 26ai.trungnva@vinuni.edu.vn | `FL.Trungocsdiogee` (`NguyenVanAnhTrung`) | **Thành viên 1:** Khởi tạo baseline, chạy eval v0–v1, ghi nhận log ban đầu                                        |
+|   2 | Hoàng Quang Đạt      | 2A202603808 | 26ai.dathq@vinuni.edu.vn    | `Quang Dat` (`HoangQuangDat`)             | **Thành viên 2:** Tool mới `github_repo`, viết 5 hàm unit test (20 case), tối ưu v2–v3                            |
+|   3 | Nguyễn Lê Đăng Khoa  | 2A202603847 | 26ai.khoanld@vinuni.edu.vn  | `S0ra1n0` (`NguyenLeDangKhoa`)            | **Thành viên 3 (Trưởng nhóm):** Thiết kế 10 case eval nhóm, chạy live chat 6 lượt, quản lý merge repo             |
+|   4 | Đỗ Anh Thư           | 2A202603815 | 26ai.thuda@vinuni.edu.vn    | `DoAnhThu832004` (`DoAnhThu`)             | **Thành viên 4:** Xây dựng Streamlit UI (C6) + deploy Cloudflare, tổng hợp báo cáo nhóm C7, TEAM.md, dọn dẹp repo |
 
 ---
 
