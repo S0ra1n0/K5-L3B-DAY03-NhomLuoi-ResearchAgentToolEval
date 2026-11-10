@@ -94,7 +94,7 @@ Mỗi thành viên có một báo cáo riêng trong thư mục `report/team/`:
 
 ### Bằng chứng
 
-- File / Commit: Commit `2a3ccaf`, `f96a68c`, `fabccdb` trên nhánh `NguyenLeDangKhoa`.
+- File / Commit: Commit `2a3ccaf`, `b672c8e` trên nhánh `NguyenLeDangKhoa`; merge vào `main` ở `fabccdb`.
 - Eval file: `starter_v0/data/eval_group.json`.
 - Run group: `starter_v0/runs/v3_B_group_openrouter_20261110T202221665376.json`.
 - Transcript: `starter_v0/transcripts/v3_openrouter_20261110T202251172175.transcript.json`.
