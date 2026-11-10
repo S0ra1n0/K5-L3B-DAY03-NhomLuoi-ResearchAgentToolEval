@@ -1,16 +1,5 @@
 version,author,changed_artifact,artifact_version,prompt_hash,tools_hash,reason,hypothesis,metric_before,metric_after,run_file
-"""v0""",NguyenVanAnhTrung,none,"""v0+peb1c8179815b+te69bc53ed884""","""eb1c8179815bd79d34de7d326420bb99b3072e6e8ae96464c02d4411f905fc68""","""e69bc53ed8846a5c2192e950c539806a61a6902b718f06d6773db6a42e9b996c""",Chạy baseline lần ,no,0,"""case_accuracy"": 0.7",v0_B_base_openrouter_20261110T180724056379.json
-"""v1""",NguyenVanAnhTrung,system_prompt.md,"""v1+pbefdb850fe28+te69bc53ed884""","""befdb850fe28656f4dfcb3c8a911132bbf74ce2a252e23bec2a372380de4f924""","""e69bc53ed8846a5c2192e950c539806a61a6902b718f06d6773db6a42e9b996c""","Sửa câu đầu system prompt từ ""fast, proactive research assistant"" thành ""research assistant""","Bỏ ""fast, proactive"" làm model bớt hấp tấp, ít tự đoán handle/URL và ít gọi tool bừa, nên case_accuracy tăng","""case_accuracy"": 0.7","""case_accuracy"": 0.7",v1_B_base_openrouter_20261110T190117456928.json
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
-,,,,,,,,,,
+v0,NguyenVanAnhTrung,baseline,v0+peb1c8179815b+te69bc53ed884,eb1c8179815b,e69bc53ed884,baseline,Đo hành vi chưa tối ưu trước khi sửa,,0.7,runs/v0_B_base_openrouter_20261110T180724056379.json
+v1,NguyenVanAnhTrung,system_prompt.md,v1+pbefdb850fe28+te69bc53ed884,befdb850fe28,e69bc53ed884,"Sửa câu đầu system prompt từ ""fast, proactive research assistant"" thành ""research assistant""","Bỏ ""fast, proactive"" làm model bớt hấp tấp, ít tự đoán handle/URL và ít gọi tool bừa, nên case_accuracy tăng",0.7,0.7,runs/v1_B_base_openrouter_20261110T190117456928.json
+v2,HoangQuangDat,system_prompt.md,v2+p3264a46e7b62+tfef6d9598408,3264a46e7b62,fef6d9598408,"Viết lại system_prompt.md tiếng Anh: bỏ 3 chỉ dẫn sai của starter, thêm rule scope/no_tool, clarify, boundary send và routing","Loại bỏ chỉ dẫn tự đoán/tự gửi/ép 1 bước và thêm rule rõ ràng giúp agent dừng đoán bừa (R10, R11), không lạm dụng send cho out-of-scope (R08) và biết gọi clarify trước khi gửi",0.7,0.85,runs/v2_B_base_openrouter_20261110T194247983178.json
+v3,HoangQuangDat,tools.yaml+system_prompt.md,v3+p5dd5a04cdce4+t6c5c91c5db73,5dd5a04cdce4,6c5c91c5db73,"Viết lại description và convention tham số tiếng Việt trong tools.yaml (khi nào dùng/không dùng, query lookup không lặp 'news', social_search vs lookup, send boundary)",Làm rõ ranh giới lookup vs social_search và quy ước query/topic/timeframe giúp sửa lỗi argument ở R13 và routing multi-turn ở M02,0.85,0.9,runs/v3_B_base_openrouter_20261110T194947018823.json
