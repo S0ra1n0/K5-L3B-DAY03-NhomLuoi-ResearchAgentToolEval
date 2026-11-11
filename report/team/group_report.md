@@ -169,7 +169,43 @@ Tool unit tests: Đã viết **5 hàm unit test (20 test case parametrize)** cho
 
 ### B5. Bonus Evidence
 
-*Nhóm không làm phần bonus; toàn bộ thời gian dành cho các yêu cầu bắt buộc C1–C7.*
+| Bonus | Evidence File | What Worked | Risk / Guardrail |
+|---|---|---|---|
+| Small Local Model | xem B7; `starter_v0/artifacts/system_prompt_local.md`, `starter_v0/artifacts/tools_local.yaml`, `starter_v0/runs/v3-qwen*`, `v4-local-*`, `v5-local-*`, `starter_v0/analysis/local_runs.csv` | 2 model local (`qwen3.5:2b`, `qwen3:4b`) chạy base eval, 2 vòng tối ưu `v4-local`, `v5-local`, kiểm tra ngược trên cloud | Prompt/tools local để ở file riêng, không sửa bản v3 của cloud; ví dụ few-shot không chép câu trong eval |
+
+Các bonus còn lại (hơn 3 tool mới, gửi Telegram thật, test challenge) nhóm không làm.
+
+### B7. Small Local Model Challenge (bonus)
+
+Chạy qua Ollama trên laptop RTX 3070 8 GB, `data/eval_base.json` (20 case). Mọi run hợp lệ (`provider_error_cases == 0`, `measured_cases == 20`), log trong `version_log.csv`.
+
+| Version | Model (provider) | Prompt/Tools | case_accuracy | tool_routing | argument | multiturn | Run File |
+|---|---|---|---:|---:|---:|---:|---|
+| v3 | gpt-4o-mini (openrouter) | v3 | 0.90 | 0.95 | 0.90 | 1.00 | `runs/v3_B_base_openrouter_20261110T194947018823.json` |
+| v3-qwen35-2b | qwen3.5:2b (ollama) | v3 | 0.70 | 0.70 | 0.70 | 0.50 | `runs/v3-qwen35-2b_B_base_ollama_20261111T094827593514.json` |
+| v3-qwen3-4b | qwen3:4b (ollama) | v3 | 0.90 | 0.95 | 0.90 | 0.83 | `runs/v3-qwen3-4b_B_base_ollama_20261111T095304240932.json` |
+| v4-local-qwen352b | qwen3.5:2b (ollama) | v3 prompt + `tools_local.yaml` | 0.75 | 0.75 | 0.75 | 0.67 | `runs/v4-local-qwen352b_B_base_ollama_20261111T095555672444.json` |
+| v4-local-qwen34b | qwen3:4b (ollama) | v3 prompt + `tools_local.yaml` | 0.85 | 0.90 | 0.85 | 0.83 | `runs/v4-local-qwen34b_B_base_ollama_20261111T100213668766.json` |
+| v5-local-qwen352b | qwen3.5:2b (ollama) | `system_prompt_local.md` + `tools_local.yaml` | 0.75 | 0.75 | 0.75 | 0.67 | `runs/v5-local-qwen352b_B_base_ollama_20261111T100430322553.json` |
+| v5-local-qwen34b | qwen3:4b (ollama) | `system_prompt_local.md` + `tools_local.yaml` | **0.95** | 1.00 | 0.95 | 1.00 | `runs/v5-local-qwen34b_B_base_ollama_20261111T101002354286.json` |
+| v5-local-cloud | gpt-4o-mini (openrouter) | `system_prompt_local.md` + `tools_local.yaml` | 0.90 | 0.95 | 0.90 | 1.00 | `runs/v5-local-cloud_B_base_openrouter_20261111T101137901676.json` |
+
+Giả thuyết từng vòng: **v4-local** chỉ sửa `tools_local.yaml` — đưa quy tắc từ khóa routing lên đầu mô tả `lookup`/`social_search` ("tin/tin tức/thời sự" → `lookup`; chỉ khi có chữ Twitter/X/tweet → `social_search`), vì baseline `qwen3.5:2b` chọn `social_search` cho 4 câu hỏi tin tức. **v5-local** giữ tools v4, thêm vào `system_prompt_local.md` quy định "luôn gọi tool qua function-calling, không viết JSON trong text" và 4 ví dụ few-shot (thiếu link → `clarify`, đã đủ thông tin → gọi tool luôn, tin → `lookup`, X → `social_search`).
+
+Lỗi đặc thù của model nhỏ (đếm từ run JSON, số case FAIL; `analysis/local_runs.csv`):
+
+| Failure Pattern | Count | Example Case | Fix Tried | Helped? |
+|---|---|---|---|---|
+| wrong / hallucinated tool | 2B: 4 → 1 → 1 (v3 → v4 → v5); 4B: 0 | `R03`: 2B gọi `social_search(query="AI")` cho "Tin tức AI hôm nay" | v4: rule từ khóa ở đầu description | **Có** — sửa `R03`, `R06`, `M02`; còn `M06` ("Bỏ Twitter, chuyển sang web") |
+| invalid JSON args (`_invalid_json_arguments`) | 0 ở mọi run local | — | — | Không gặp |
+| no tool call / answered directly | 2B: 1 → 4 → 3; 4B: 1 → 1 → 0 | `M05` (4B v3): đúng tool + args nhưng in `{"function": "timeline", ...}` ra text; `R11` (2B): hỏi lại link bằng text | v5: quy định "luôn function-calling" + few-shot | **Có với 4B** (`M05` sửa ở v5); **không với 2B** (vẫn hỏi lại bằng text ở `R10`, `R11`, `R12`) |
+| missed `clarify` | 2B: 1 → 3 → 3; cloud v5: 1 | `R10` (2B v5): hỏi "bạn muốn tóm tắt tweet của ai" bằng text thay vì gọi `clarify` | v5 few-shot thiếu link/thiếu tài khoản → `clarify` | Không với 2B |
+| repeated / unnecessary calls | 2B v3: `M01` clarify thừa; 2B v5: `M05` clarify thừa; 4B v4: `R14` gọi `format` cho yêu cầu viết code; cloud v5: `R10` gọi `timeline` 3 lần | cloud v5 `R10`: `timeline(elonmusk)`, `timeline(satyanadella)`, `timeline(tim_cook)` | — | Few-shot gây hại trên cloud (xem dưới) |
+
+- **Cái gì giúp model nhỏ gọi tool đúng hơn nhất? Bằng chứng?** Với `qwen3:4b`, quy định "luôn gọi tool qua function-calling" + few-shot ở v5 là bước hiệu quả nhất: 0.85 → **0.95** (`M05` hết bị in JSON ra text), cao hơn cả cloud v3 (0.90). Với `qwen3.5:2b`, rule từ khóa trong description (v4) là thứ duy nhất có tác dụng: lỗi chọn sai tool 4 → 1, case_accuracy 0.70 → 0.75; few-shot v5 không giúp thêm vì model 2B vẫn có xu hướng hỏi lại bằng text thay vì gọi `clarify`.
+- **Chưa phải mọi thay đổi đều tốt:** v4 làm `qwen3:4b` tụt 0.90 → 0.85 (`R14` gọi `format` cho yêu cầu viết code — case không liên quan tới phần đã sửa, nhiều khả năng do dao động của model), và v4 làm 2B hỏi lại bằng text nhiều hơn (1 → 4 case "no tool call").
+- **Bản prompt tối ưu cho local chạy trên model cloud thì sao?** `v5-local-cloud` giữ nguyên 0.90 như v3, nhưng đổi kiểu lỗi: `R10` ("Tóm tắt 5 tweet mới nhất") thay vì hỏi lại thì gọi `timeline` cho `elonmusk`, `satyanadella`, `tim_cook` — `satyanadella` chính là handle trong ví dụ few-shot. Model cloud "chép" ví dụ few-shot vào đáp án, nên few-shot cho model nhỏ có thể gây rò rỉ ví dụ trên model lớn; không có một bản prompt nào tốt hơn hẳn cho cả hai.
+- **Khi nào nhóm sẽ chọn model local thay vì cloud?** Khi cần chạy offline, không tốn phí API, hoặc dữ liệu không được rời máy (vd tra `policy` nội bộ). Theo số liệu, `qwen3:4b` + prompt/tools local (0.95) đủ dùng cho routing của agent này; model 2B (0.75) chưa đủ tin cậy cho các case cần `clarify` hoặc xác nhận trước khi `send`. Run local nhanh trên GPU 8 GB: ~2 phút (2B) và ~5 phút (4B) cho 20 case.
 
 ---
 

@@ -24,6 +24,7 @@
 2. **Chạy group eval bản `v3`:** `runs/v3_B_group_openrouter_20261110T202221665376.json` — 10/10 measured, 0 provider error, `case_accuracy 0.60` (6/10). Phân tích 4 case FAIL (`G04`, `G05`, `GM03`, `GM05`) thành 4 giả thuyết cho vòng tối ưu tiếp theo (ghi trong B3).
 3. **Live chat bản `v3`:** `transcripts/v3_openrouter_20261110T202251172175.transcript.json` — 6 lượt: research thường (`lookup`), thiếu URL → agent hỏi lại → bổ sung URL (`fetch`), hỏi repo (`github_repo`), yêu cầu đăng Telegram → agent hỏi xác nhận, không tự gửi.
 4. **Phát hiện lỗi lệch hash do line ending:** trên Windows (`core.autocrlf=true`), `system_prompt.md` / `tools.yaml` bị checkout thành CRLF nên `prompt_hash` / `tools_hash` khác v3 dù nội dung giống hệt. Đã chuẩn hoá về LF trước khi chạy để run group và transcript có đúng `artifact_version v3+p5dd5a04cdce4+t6c5c91c5db73`.
+5. **Bonus Small Local Model (Step 7, mục B7):** chạy base eval trên `qwen3.5:2b` và `qwen3:4b` (Ollama), 2 vòng tối ưu `v4-local` (rule routing trong `tools_local.yaml`) và `v5-local` (few-shot + quy định function-calling trong `system_prompt_local.md`), kiểm tra ngược trên cloud. Kết quả: `qwen3:4b` 0.90 → 0.95, `qwen3.5:2b` 0.70 → 0.75; phát hiện few-shot làm model cloud chép handle trong ví dụ (`R10`).
 
 ## 4. Bằng chứng
 
