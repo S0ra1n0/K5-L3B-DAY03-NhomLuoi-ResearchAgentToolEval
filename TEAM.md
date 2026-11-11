@@ -91,6 +91,7 @@ Mỗi thành viên có một báo cáo riêng trong thư mục `report/team/`:
 - Chạy group eval bản v3: đạt case accuracy **0.60** (6/10), phân tích chi tiết 4 case fail.
 - Thực hiện phiên live chat 6 lượt thể hiện đầy đủ 3 tình huống bắt buộc: research web, clarify khi thiếu URL, route tool github_repo, và guardrail chặn gửi Telegram khi chưa xác nhận.
 - Phát hiện và hướng dẫn xử lý lỗi lệch hash line ending CRLF trên Windows.
+- Bonus Small Local Model (Step 7): chạy base eval trên 2 model local (`qwen3.5:2b`, `qwen3:4b`) qua Ollama, 2 vòng tối ưu `v4-local` (`tools_local.yaml`) và `v5-local` (`system_prompt_local.md`), kiểm tra ngược trên cloud, điền mục B7.
 
 ### Bằng chứng
 
@@ -98,6 +99,7 @@ Mỗi thành viên có một báo cáo riêng trong thư mục `report/team/`:
 - Eval file: `starter_v0/data/eval_group.json`.
 - Run group: `starter_v0/runs/v3_B_group_openrouter_20261110T202221665376.json`.
 - Transcript: `starter_v0/transcripts/v3_openrouter_20261110T202251172175.transcript.json`.
+- Bonus local model: `starter_v0/artifacts/system_prompt_local.md`, `starter_v0/artifacts/tools_local.yaml`, các run `starter_v0/runs/v3-qwen*`, `v4-local-*`, `v5-local-*`, `starter_v0/analysis/local_runs.csv`.
 
 ---
 
